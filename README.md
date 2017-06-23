@@ -4,6 +4,8 @@
 * 对于非默认值的请求可以自定义进行设置
 * 方便添加自定义行为，利于扩展
 
+---------------------
+
 Swift中常用的网络请求库当属[Alamofire](https://github.com/Alamofire/Alamofire)，GitHub上也有对Alamofire的封装，比较有名的就是Moya了。
 但是我个人习惯了在OC中的封装，所以还是把Alamofire当作AFN来用了。
 

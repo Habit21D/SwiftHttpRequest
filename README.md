@@ -1,14 +1,14 @@
 # Swift_HttpRequest
-Swift中常用的网络请求库当属Alamofire，GitHub上也有对Alamofire的封装，比较有名的就是Moya了。
+Swift中常用的网络请求库当属[Alamofire](https://github.com/Alamofire/Alamofire)，GitHub上也有对Alamofire的封装，比较有名的就是Moya了。
 但是我个人习惯了在OC中的封装，所以还是把Alamofire当作AFN来用了。
 
 Demo比较简单，初学者可以看下。欢迎大神指导
 
 -----------------
 
-HandyJSON 是阿里巴巴开源的model的映射库。
+[HandyJSON](https://github.com/alibaba/HandyJSON) 是阿里巴巴开源的model的映射库。
 
-比ObjectMapper好的在于：
+比[ObjectMapper](https://github.com/Hearst-DD/ObjectMapper)好的在于：
 * HandyJSON不需要自己写映射，
 * 不需要继承自NSObject，可以使用Struct来建model
 

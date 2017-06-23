@@ -68,7 +68,8 @@ extension NetworkKit{
 //NetworkKit请求相关，设置好相关参数后再调用
 /*
 这里的封装具有针对性，因为返回String类型的话比较方便HandyJSON的处理
-而返回JSON类型是为了以备不时之需，所以默认值到String
+而返回JSON类型是为了以备不时之需（比如有同学使用SwiftyJSON），所以默认值到String
+Alamofire本身提供多种类型response
 */
 extension NetworkKit{
     

@@ -14,8 +14,6 @@
 Swift中常用的网络请求库当属[Alamofire](https://github.com/Alamofire/Alamofire)，GitHub上也有对Alamofire的封装，比较有名的就是Moya了。
 但是我个人习惯了在OC中的封装，所以还是把Alamofire当作AFN来用了。
 
-Demo比较简单，初学者可以看下。欢迎大神指导
-
 
 
 [HandyJSON](https://github.com/alibaba/HandyJSON) 是阿里巴巴开源的model的映射库。
@@ -33,3 +31,5 @@ Demo中对HandyJSON的使用没有做详细的介绍
 希望能达到抛砖引玉的效果
 
 也给新学习swift的朋友一个简单的网络处理的方式
+
+欢迎大家知道，互相学习

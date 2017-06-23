@@ -6,7 +6,7 @@
 ----------
 ### 1.0 类OC中的AFN封装
 * 利于OC转swift的同学学习
-* 其中对返回值做了JSON和String两种解析，String是为了方便实用HandyJSON，不适用HandyJSON可以自行删除部分代码
+* 其中对返回值做了JSON和String两种解析，String是为了方便实用HandyJSON，不使用HandyJSON可以自行删除部分代码
 
 ---------------------
 ### 使用到的三方库介绍
@@ -16,7 +16,7 @@ Swift中常用的网络请求库当属[Alamofire](https://github.com/Alamofire/A
 
 Demo比较简单，初学者可以看下。欢迎大神指导
 
------------------
+
 
 [HandyJSON](https://github.com/alibaba/HandyJSON) 是阿里巴巴开源的model的映射库。
 
@@ -28,7 +28,7 @@ Demo比较简单，初学者可以看下。欢迎大神指导
 具体可以看[在Swift语言中处理JSON - 转换JSON和Model](http://www.cocoachina.com/swift/20161010/17711.html)
 
 
----------
+
 Demo中对HandyJSON的使用没有做详细的介绍
 希望能达到抛砖引玉的效果
 

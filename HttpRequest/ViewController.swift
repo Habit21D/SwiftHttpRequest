@@ -21,8 +21,14 @@ class ViewController: UIViewController {
             error in
             //失败
         })
-//        AlamofireTest.TestJsonResutl()
-//        AlamofireTest.testResult()
+
+        
+        JTestNet.loadData(params: nil, success: { (model) in
+            
+        }) { (error) in
+            
+        }
+
         
     }
 

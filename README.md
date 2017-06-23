@@ -8,10 +8,10 @@ Demo比较简单，初学者可以看下。欢迎大神指导
 
 HandyJSON 是阿里巴巴开源的model的映射库。
 比ObjectMapper好的在于：
-HandyJSON不需要自己写映射，
-不需要继承自NSObject，可以使用Struct来建model
+*HandyJSON不需要自己写映射，
+*不需要继承自NSObject，可以使用Struct来建model
 我在OC最喜欢的就是MJExtention了，所以swift中你肯定会爱上HandyJSON的
-具体可以看http://www.cocoachina.com/swift/20161010/17711.html
+具体可以看[在Swift语言中处理JSON - 转换JSON和Model](http://www.cocoachina.com/swift/20161010/17711.html)
 
 
 ---------

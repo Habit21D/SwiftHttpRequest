@@ -4,7 +4,7 @@
 //
 //  Created by JIN on 2017/6/23.
 //  Copyright © 2017年 lazywe. All rights reserved.
-//
+//  网络层封装
 
 import Foundation
 import Alamofire

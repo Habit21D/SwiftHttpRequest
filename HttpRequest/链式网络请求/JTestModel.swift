@@ -4,7 +4,7 @@
 //
 //  Created by JIN on 2017/6/23.
 //  Copyright © 2017年 lazywe. All rights reserved.
-//
+//  调用示例
 
 import Foundation
 import HandyJSON

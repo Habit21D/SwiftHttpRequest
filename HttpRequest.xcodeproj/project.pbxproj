@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		188883D21F32CECA005AE20A /* MyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188883D11F32CECA005AE20A /* MyAPI.swift */; };
+		188883D41F32D425005AE20A /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 188883D31F32D425005AE20A /* ViewModel.swift */; };
 		3C29FCB71EFBC71500D22B89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29FCB61EFBC71500D22B89 /* AppDelegate.swift */; };
 		3C29FCB91EFBC71500D22B89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C29FCB81EFBC71500D22B89 /* ViewController.swift */; };
 		3C29FCBE1EFBC71500D22B89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C29FCBD1EFBC71500D22B89 /* Assets.xcassets */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		188883D11F32CECA005AE20A /* MyAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAPI.swift; sourceTree = "<group>"; };
+		188883D31F32D425005AE20A /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		3C29FCB31EFBC71500D22B89 /* HttpRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HttpRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C29FCB61EFBC71500D22B89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C29FCB81EFBC71500D22B89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +93,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		188883D01F32CE7E005AE20A /* Moya */ = {
+			isa = PBXGroup;
+			children = (
+				188883D11F32CECA005AE20A /* MyAPI.swift */,
+				188883D31F32D425005AE20A /* ViewModel.swift */,
+			);
+			path = Moya;
+			sourceTree = "<group>";
+		};
 		3C29FCAA1EFBC71500D22B89 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +130,7 @@
 				3C29FCB61EFBC71500D22B89 /* AppDelegate.swift */,
 				3C29FCB81EFBC71500D22B89 /* ViewController.swift */,
 				3C63F8781EFCCC8A003DF9CD /* URLList.swift */,
+				188883D01F32CE7E005AE20A /* Moya */,
 				3C63F8811EFD03DB003DF9CD /* 链式网络请求 */,
 				3C63F87A1EFCCCD5003DF9CD /* 类AFN封装 */,
 				3C29FCBD1EFBC71500D22B89 /* Assets.xcassets */,
@@ -251,7 +265,8 @@
 				TargetAttributes = {
 					3C29FCB21EFBC71500D22B89 = {
 						CreatedOnToolsVersion = 8.3.3;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 2VFH8447PJ;
+						ProvisioningStyle = Manual;
 					};
 					3C29FCC61EFBC71500D22B89 = {
 						CreatedOnToolsVersion = 8.3.3;
@@ -319,9 +334,22 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/HandyJSON/HandyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HandyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -349,13 +377,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HttpRequest-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -366,11 +397,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C63F8791EFCCC8A003DF9CD /* URLList.swift in Sources */,
+				188883D41F32D425005AE20A /* ViewModel.swift in Sources */,
 				3C63F8711EFCAE04003DF9CD /* TestModel.swift in Sources */,
 				3C63F8771EFCC9D1003DF9CD /* NetworkTools.swift in Sources */,
 				3C63F8851EFD03DB003DF9CD /* JTestModel.swift in Sources */,
 				3C29FCB91EFBC71500D22B89 /* ViewController.swift in Sources */,
 				3C63F8841EFD03DB003DF9CD /* JRequets.swift in Sources */,
+				188883D21F32CECA005AE20A /* MyAPI.swift in Sources */,
 				3C29FCB71EFBC71500D22B89 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,10 +551,14 @@
 			baseConfigurationReference = B73CF0A73FC4B6DEA593380D /* Pods-HttpRequest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2VFH8447PJ;
 				INFOPLIST_FILE = HttpRequest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "43b70783-86f7-41a6-8982-2506d079a5d1";
+				PROVISIONING_PROFILE_SPECIFIER = CommonPP;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -531,10 +568,14 @@
 			baseConfigurationReference = E33A20B022F8610B1E412DC3 /* Pods-HttpRequest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 2VFH8447PJ;
 				INFOPLIST_FILE = HttpRequest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "b371cfe7-a427-49f1-9e4c-6b608d9104a8";
+				PROVISIONING_PROFILE_SPECIFIER = CommonPP;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

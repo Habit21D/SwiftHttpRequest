@@ -21,14 +21,22 @@ class ViewController: UIViewController {
             error in
             //失败
         })
-
-        
+//
+//        
         JTestNet.loadData(params: nil, success: { (model) in
             
         }) { (error) in
             
         }
-
+        
+        ViewModel.loadData(params: nil, success: { (data) in
+           if let model = data as? TestModel
+           {
+            print(model)
+            }
+        }) { (error) in
+            
+        }
         
     }
 

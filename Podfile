@@ -7,4 +7,5 @@ target 'HttpRequest' do
 pod 'Alamofire'
 pod 'SwiftyJSON'
 pod 'HandyJSON'
+pod 'Moya/RxSwift'
 end

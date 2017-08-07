@@ -27,7 +27,7 @@ class NetworkKit {
     
     var requestType: HttpRequestType = .post//请求类型
     var url: String?//URL
-    var params: [String: AnyObject]?//参数
+    var params: [String: Any]?//参数
     var successHandler: SuccessHandlerType?//成功的回调
     var failureHandler: FailureHandlerType?//失败的回调
     var httpRequest: Request?
@@ -38,7 +38,7 @@ class NetworkKit {
 //NetworkKit属性的设置
 extension NetworkKit{
     
-    func url(_ url: String) -> Self {
+    func url(_ url: String?) -> Self {
         self.url = url
         return self
     }
@@ -48,7 +48,7 @@ extension NetworkKit{
         return self
     }
     
-    func params(params: [String: AnyObject]) -> Self {
+    func params(params: [String: Any]?) -> Self {
         self.params = params
         return self
     }

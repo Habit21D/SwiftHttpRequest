@@ -39,12 +39,39 @@ class Headers: HandyJSON {
     }
 }
 
+class YJCreditsListModel: HandyJSON {
+    var total: Int = 0;
+    var per_page: Int = 0;
+    var current_page: Int = 0;
+    var last_page: Int = 0;
+    var from: Int = 0;
+    var to: Int = 0;
+    var pic_host: String = "";
+    var state_code: Int = 0;
+    var message : String = "";
+    var data: [YJCreditsListData]?
+    
+    required init() {}
+}
+
+class YJCreditsListData: HandyJSON {
+    var id: Int = 0;
+    var title: String = "";
+    var price: Int = 0;
+    var is_new: Int = 0;
+    var img: String = "";
+    var is_scorebuy: Int = 0;
+    var score: Int = 0;
+    required init() {}
+    
+}
+
 //测试网络的类
 class TestNet {
     class func loadData(params : [String : Any]?,success : @escaping (Any?)->(), failture : @escaping (NSError)->()) {
-        NetworkTools.GET(URLString: URL_Alamofire_test, params: params, success: { (result) in
+        NetworkTools.POST(URLString:"http://app.yjzx001.com/index.php/api/scoreshop/list", params: params, success: { (result) in
             //JSON的String转model
-            if let testModel = TestModel.deserialize(from:result)
+            if let testModel = YJCreditsListModel.deserialize(from:result)
             {//model处理后传出
                 print(testModel);
                 success(testModel)

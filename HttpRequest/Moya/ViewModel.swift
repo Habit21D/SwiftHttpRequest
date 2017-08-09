@@ -18,7 +18,8 @@ class ViewModel {
             switch result {
             case let .success(response):
                 
-                if let testModel = TestModel.deserialize(from: JSON(response.data).dictionary as NSDictionary?)
+                //HandyJSON  解析道可以是字符串也可以是字典，所以在这里做一下转换
+                if let testModel = TestModel.deserialize(from: JSON(response.data).dictionaryObject as NSDictionary?)
                 {
                 success(testModel)
                 }

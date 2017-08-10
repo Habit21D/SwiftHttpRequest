@@ -9,16 +9,16 @@
 import Foundation
 import HandyJSON
 //JSON转model ，使用了阿里巴巴出品的HandyJSON，类似于MJExtention
-class TestModel: HandyJSON {
+struct TestModel: HandyJSON {
     var args : [String:Any]?
     var headers : Headers?
     var origin = ""
     var url = ""
     
-    required init() {}
+//    required init() {}
 }
 
-class Headers: HandyJSON {
+struct Headers: HandyJSON {
     var Accept:String = ""
     var Accept_Encoding = ""
     var Accept_Language = ""
@@ -26,10 +26,10 @@ class Headers: HandyJSON {
     var Cookie = ""
     var Host = ""
     var User_Agent = ""
-    required init() {}
+     init() {}
     
     //指定不对应的字段。 属性Accept_Encoding 对应服务器的Accept-Encoding
-    func mapping(mapper: HelpingMapper) {
+    mutating func mapping(mapper: HelpingMapper) {
         mapper <<<
             self.Accept_Encoding <-- "Accept-Encoding"
         mapper <<<

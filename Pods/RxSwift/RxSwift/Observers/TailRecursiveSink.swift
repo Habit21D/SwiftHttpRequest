@@ -21,7 +21,7 @@ class TailRecursiveSink<S: Sequence, O: ObserverType>
     , InvocableWithValueType where S.Iterator.Element: ObservableConvertibleType, S.Iterator.Element.E == O.E {
     typealias Value = TailRecursiveSinkCommand
     typealias E = O.E
-    typealias SequenceGenerator = (generator: S.Iterator, remaining: IntMax?)
+    typealias SequenceGenerator = (generator: S.Iterator, remaining: Int64?)
 
     var _generators: [SequenceGenerator] = []
     var _isDisposed = false

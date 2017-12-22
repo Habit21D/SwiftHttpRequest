@@ -22,6 +22,7 @@
 		3C63F8841EFD03DB003DF9CD /* JRequets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C63F8821EFD03DB003DF9CD /* JRequets.swift */; };
 		3C63F8851EFD03DB003DF9CD /* JTestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C63F8831EFD03DB003DF9CD /* JTestModel.swift */; };
 		C5477E59ED1DFF25579ED6B8 /* Pods_HttpRequest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B21512528E962817A92F0A /* Pods_HttpRequest.framework */; };
+		E988D03A1FE27D7300663BA2 /* TJsonDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E988D0391FE27D7300663BA2 /* TJsonDecoder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		B73CF0A73FC4B6DEA593380D /* Pods-HttpRequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HttpRequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest.debug.xcconfig"; sourceTree = "<group>"; };
 		E0B21512528E962817A92F0A /* Pods_HttpRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HttpRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E33A20B022F8610B1E412DC3 /* Pods-HttpRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HttpRequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest.release.xcconfig"; sourceTree = "<group>"; };
+		E988D0391FE27D7300663BA2 /* TJsonDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TJsonDecoder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				3C29FCB61EFBC71500D22B89 /* AppDelegate.swift */,
 				3C29FCB81EFBC71500D22B89 /* ViewController.swift */,
 				3C63F8781EFCCC8A003DF9CD /* URLList.swift */,
+				E988D0381FE27D1E00663BA2 /* swift4_josn解析 */,
 				188883D01F32CE7E005AE20A /* Moya */,
 				3C63F8811EFD03DB003DF9CD /* 链式网络请求 */,
 				3C63F87A1EFCCCD5003DF9CD /* 类AFN封装 */,
@@ -192,6 +195,14 @@
 				E33A20B022F8610B1E412DC3 /* Pods-HttpRequest.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		E988D0381FE27D1E00663BA2 /* swift4_josn解析 */ = {
+			isa = PBXGroup;
+			children = (
+				E988D0391FE27D7300663BA2 /* TJsonDecoder.swift */,
+			);
+			path = "swift4_josn解析";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,15 +277,18 @@
 					3C29FCB21EFBC71500D22B89 = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = 2VFH8447PJ;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 					};
 					3C29FCC61EFBC71500D22B89 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3C29FCB21EFBC71500D22B89;
 					};
 					3C29FCD11EFBC71500D22B89 = {
 						CreatedOnToolsVersion = 8.3.3;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 3C29FCB21EFBC71500D22B89;
 					};
@@ -397,6 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3C63F8791EFCCC8A003DF9CD /* URLList.swift in Sources */,
+				E988D03A1FE27D7300663BA2 /* TJsonDecoder.swift in Sources */,
 				188883D41F32D425005AE20A /* ViewModel.swift in Sources */,
 				3C63F8711EFCAE04003DF9CD /* TestModel.swift in Sources */,
 				3C63F8771EFCC9D1003DF9CD /* NetworkTools.swift in Sources */,
@@ -557,9 +572,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "43b70783-86f7-41a6-8982-2506d079a5d1";
-				PROVISIONING_PROFILE_SPECIFIER = CommonPP;
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "b81a2aab-77a3-4cd8-8f18-f1557af978a8";
+				PROVISIONING_PROFILE_SPECIFIER = Common;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -574,9 +590,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "b371cfe7-a427-49f1-9e4c-6b608d9104a8";
-				PROVISIONING_PROFILE_SPECIFIER = CommonPP;
-				SWIFT_VERSION = 3.0;
+				PROVISIONING_PROFILE = "b81a2aab-77a3-4cd8-8f18-f1557af978a8";
+				PROVISIONING_PROFILE_SPECIFIER = Common;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -589,7 +606,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HttpRequest.app/HttpRequest";
 			};
 			name = Debug;
@@ -603,7 +621,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequestTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HttpRequest.app/HttpRequest";
 			};
 			name = Release;
@@ -616,7 +635,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = HttpRequest;
 			};
 			name = Debug;
@@ -629,7 +649,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jyn.demo.HttpRequestUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TEST_TARGET_NAME = HttpRequest;
 			};
 			name = Release;

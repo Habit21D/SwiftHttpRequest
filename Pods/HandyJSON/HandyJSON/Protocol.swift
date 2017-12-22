@@ -176,7 +176,7 @@ extension PlainJSONValue {
 }
 
 // MARK: 基本类型 - 整型
-protocol IntegerPropertyProtocol: Integer, PlainJSONValue {
+protocol IntegerPropertyProtocol: BinaryInteger, PlainJSONValue {
     init?(_ text: String, radix: Int)
     init(_ number: NSNumber)
 }

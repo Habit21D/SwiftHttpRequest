@@ -1,5 +1,6 @@
 # Swift_HttpRequest
 
+[简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
 ## Demo说明
 Demo主要介绍Swift的网络部分，代码已更新到swift4

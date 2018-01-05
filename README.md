@@ -77,22 +77,23 @@ http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每
 ## Demo说明
 Demo主要介绍Swift的网络部分，代码已更新到swift4
 
-#### 网络部分
+#### --网络部分
 请求均采用 `Alamofire`
-请求封装方式分为：
-*1.Moya（一个star很多的`Alamofire`的上层封装，为本demo推荐方式。我在使用过程中最终发现moya是极其优美的网络请求方式）
-*2.链式请求（如果你刚刚从OC转到swift，可能还不适应moya的方式，那么可以用这种请求方式来过渡）
-*3.仿AFN式请求（这应该是OC中常见的封装方式，但是真的不再适合swift这个优美的语言啦）
 
-#### Progress及信息处理
+请求封装方式分为：
+* 1.Moya（一个star很多的`Alamofire`的上层封装，为本demo推荐方式。我在使用过程中最终发现moya是极其优美的网络请求方式）
+* 2.链式请求（如果你刚刚从OC转到swift，可能还不适应moya的方式，那么可以用这种请求方式来过渡）
+* 3.仿AFN式请求（这应该是OC中常见的封装方式，但是真的不再适合swift这个优美的语言啦）
+
+#### --Progress及信息处理
 加载动画及弹出框采用 MBProgressHUD
 
-#### 数据解析
+#### --数据解析
 在swift4之前，我一直用的是`HandyJSON`（下面有介绍）。在swift4之后我把model的解析转到到官方的Codable。
 
 本来这个demo只是我转swift时用来学习网络的，但是发现对一些同学很有帮助，所以重新整理了一下代码，将代码由swift3升级到swift4，并且抛弃了`HandyJSON`，因为swift语言的特性，要学就学最新的，所以demo中不再提供其他josn解析方式的示例
 
-#### 缓存
+#### --缓存
 缓存部分没有接入数据库，而是直接用了`write to file`,并将缓存封装到网络请求方法中
 
 ## 本demo内容可直接用于项目开发，我在项目中大量使用，感觉还不错哈哈哈
@@ -125,7 +126,7 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 
 如果对你有帮助还请给个Star，谢谢🙏
 ----
-### 1.3 更新到swift4，重新整理代码
+### 2.0 更新到swift4，重新整理代码
 
 ### 1.2 新增moya的demo
 

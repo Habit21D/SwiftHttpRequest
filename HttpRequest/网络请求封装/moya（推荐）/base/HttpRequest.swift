@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import MBProgressHUD
 
-///错误码
+///错误码 根据自家后台数据确定
 let NET_STATE_CODE_SUCCESS = 0
 let NET_STATE_CODE_LOGIN = 4000
 
@@ -31,21 +31,21 @@ class HttpRequest {
     ///   - failure: 连接服务器失败
     class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         let provider = MoyaProvider<T>()
-
+        
         if cache, let data = TSaveFiles.read(path: target.path) {
-             success(data)
+            success(data)
         }else {
-             TProgressHUD.show()
+            TProgressHUD.show()
         }
         
         provider.request(target) { result in
+            TProgressHUD.hide()
             switch result {
             case let .success(response):
-                TProgressHUD.hide()
                 do {
-//／ ***********这里可以统一处理错误码，统一弹出错误 ****
+                    // ***********这里可以统一处理错误码，统一弹出错误 ****
                     let _ = try response.filterSuccessfulStatusCodes()
-
+                    
                     let decoder = JSONDecoder()
                     let baseModel = try? decoder.decode(TBaseModel.self, from: response.data)
                     guard let model = baseModel else {
@@ -75,7 +75,6 @@ class HttpRequest {
                         failureHandle(failure: failure, stateCode: nil, message: model.error_msg)
                         break
                     }
-/// *************************
                 }
                 catch let error {
                     guard let error = error as? MoyaError else { return }
@@ -83,13 +82,13 @@ class HttpRequest {
                     let errorCode = "请求出错，错误码：" + String(statusCode)
                     failureHandle(failure: failure, stateCode: statusCode, message: error.errorDescription ?? errorCode)
                 }
-            case let .failure(error):
-                TProgressHUD.hide()
+            // ********************
+            case .failure(_):
                 failureHandle(failure: failure, stateCode: nil, message: "网络异常")
             }
         }
         
-        //错误处理
+        //错误处理 - 弹出错误信息
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
             TAlert.show(type: .error, text: message)
             if let failureBlack = failure {
@@ -97,11 +96,10 @@ class HttpRequest {
             }
         }
         
+        //登录弹窗 - 弹出是否需要登录的窗口
         func alertLogin(_ title: String?) {
-            TAlert.show(type: .error, text: title ?? "请前往登录")
-            //跳转到登录页
+            //TODO: 跳转到登录页的操作：
         }
-    
     }
 }
 

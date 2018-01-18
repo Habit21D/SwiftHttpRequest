@@ -18,57 +18,55 @@ enum HttpRequestType {
 class NetworkKit {
     
     typealias SuccessHandlerType = ((Data) -> Void)
-    typealias FailureHandlerType = ((NSError?) -> Void)
+    typealias FailureHandlerType = ((Int?, String) ->Void)
     
-    var requestType: HttpRequestType = .post//请求类型
-    var url: String?//URL
-    var params: [String: Any]?//参数
-    var successHandler: SuccessHandlerType?//成功的回调
-    var failureHandler: FailureHandlerType?//失败的回调
-    var httpRequest: Request?
-    
+    private var requestType: HttpRequestType = .post//请求类型
+    private var url: String?//URL
+    private var params: [String: Any]?//参数
+    private var success: SuccessHandlerType?//成功的回调
+    private var failure: FailureHandlerType?//失败的回调
+    private var httpRequest: Request?
     
 }
 
 //NetworkKit属性的设置
 extension NetworkKit{
-    
+    ///设置url
     func url(_ url: String?) -> Self {
         self.url = url
         return self
     }
     
+    ///设置post/get 默认post
     func requestType(_ type:HttpRequestType) -> Self {
         self.requestType = type
         return self
     }
     
+    ///设置参数
     func params(_ params: [String: Any]?) -> Self {
         self.params = params
         return self
     }
     
+    ///成功的回调
     func success(_ handler: @escaping SuccessHandlerType) -> Self {
-        self.successHandler = handler
+        self.success = handler
         return self
     }
     
+    ///失败的回调
     func failure(handler: @escaping FailureHandlerType) -> Self {
-        self.failureHandler = handler
+        self.failure = handler
         return self
     }
     
 }
 
-//NetworkKit请求相关，设置好相关参数后再调用
-/*
- 这里的封装具有针对性，因为返回String类型的话比较方便HandyJSON的处理
- 而返回JSON类型是为了以备不时之需（比如有同学使用SwiftyJSON），所以默认值到String
- Alamofire本身提供多种类型response
- */
+//NetworkKit请求相关
 extension NetworkKit{
     
-    //发起请求，并处理请求结果--处理成字符串还是JSON
+    ///发起请求 设置好相关参数后再调用
     func request() -> Void {
         var dataRequest: DataRequest?//alamofire请求后的返回值
         
@@ -77,21 +75,62 @@ extension NetworkKit{
             TProgressHUD.show()
             let method = requestType == .get ? HTTPMethod.get : HTTPMethod.post
             dataRequest =  Alamofire.request(URLString, method: method, parameters: params)
+            httpRequest = dataRequest
         }
         
         dataRequest?.responseData {
             (response) in
             TProgressHUD.hide()
-            switch response.result {
-            case.success:
-                if let value = response.result.value{
-                    self.successHandler?(value)
-                }
-                //可进行错误码统一处理
-            case .failure(let error):
-                self.failureHandler?(error as NSError)
-                
+            guard let json = response.data else {
+                return
             }
+            switch response.result {
+            case let .success(response):
+                do {
+                    // ***********这里可以统一处理错误码，统一弹出错误 ****
+                    let decoder = JSONDecoder()
+                    let baseModel = try? decoder.decode(TBaseModel.self, from: json)
+                    guard let model = baseModel else {
+                        if let failureBlack = self.failure {
+                            failureBlack(nil, "解析失败")
+                        }
+                        return
+                    }
+                    switch (model.dm_error) {
+                    case NET_STATE_CODE_SUCCESS :
+                        //数据返回正确
+                        self.success?(json)
+                        break
+                    case NET_STATE_CODE_LOGIN:
+                        //请重新登录
+                        if let failureBlack = self.failure {
+                            failureBlack(model.dm_error ,model.error_msg)
+                        }
+                        alertLogin(model.error_msg)
+                        break
+                    default:
+                        //其他错误
+                        failureHandle(failure: self.failure, stateCode: nil, message: model.error_msg)
+                        break
+                    }
+                }
+            case .failure(_):
+                failureHandle(failure: self.failure, stateCode: nil, message: "网络异常")
+            }
+            
+        }
+        
+        //错误处理 - 弹出错误信息
+        func failureHandle(failure: FailureHandlerType? , stateCode: Int?, message: String) {
+            TAlert.show(type: .error, text: message)
+            if let failureBlack = failure {
+                failureBlack(nil ,message)
+            }
+        }
+        
+        //登录弹窗 - 弹出是否需要登录的窗口
+        func alertLogin(_ title: String?) {
+            //TODO: 跳转到登录页的操作：
         }
     }
     

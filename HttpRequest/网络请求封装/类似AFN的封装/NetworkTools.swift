@@ -25,26 +25,66 @@ class NetworkTools {
     ///   - params: 参数
     ///   - success: 成功的回调
     ///   - failture: 失败的回调
-    class func request(_ type : MethodType = .post, url : String, params : [String : Any]?,success : @escaping (_ data : Data)->(), failture : @escaping (_ error : NSError)->()) {
+    class func request(_ type : MethodType = .post, url : String, params : [String : Any]?,success : @escaping (_ data : Data)->(), failure : ((Int?, String) ->Void)?) {
         // 1.获取类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
         // 2.发送网络请求
         TProgressHUD.show()
          Alamofire.request(url, method: method, parameters: params).responseData { (response) in
             TProgressHUD.hide()
+            guard let json = response.data else {
+                return
+            }
             switch response.result {
-            case.success:
-                if let value = response.result.value {
-                    success(value)
+            case let .success(response):
+                do {
+                    // ***********这里可以统一处理错误码，统一弹出错误 ****
+                    let decoder = JSONDecoder()
+                    let baseModel = try? decoder.decode(TBaseModel.self, from: json)
+                    guard let model = baseModel else {
+                        if let failureBlack = failure {
+                            failureBlack(nil, "解析失败")
+                        }
+                        return
+                    }
+                    switch (model.dm_error) {
+                    case NET_STATE_CODE_SUCCESS :
+                        //数据返回正确
+                        success(json)
+                        break
+                    case NET_STATE_CODE_LOGIN:
+                        //请重新登录
+                        if let failureBlack = failure {
+                            failureBlack(model.dm_error ,model.error_msg)
+                        }
+                        alertLogin(model.error_msg)
+                        break
+                    default:
+                        //其他错误
+                        failureHandle(failure: failure, stateCode: nil, message: model.error_msg)
+                        break
+                    }
                 }
-                //可进行错误码的统一处理
-            case .failure(let error):
-                failture(error as NSError)
+            case .failure(_):
+                failureHandle(failure: failure, stateCode: nil, message: "网络异常")
             }
         }
         
+        //错误处理 - 弹出错误信息
+        func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
+            TAlert.show(type: .error, text: message)
+            if let failureBlack = failure {
+                failureBlack(nil ,message)
+            }
+        }
+        
+        //登录弹窗 - 弹出是否需要登录的窗口
+        func alertLogin(_ title: String?) {
+            //TODO: 跳转到登录页的操作：
+        }
     }
  
+   
 }
 
 //二次封装
@@ -57,8 +97,8 @@ extension NetworkTools{
     ///   - params: 参数
     ///   - success: 成功的回调
     ///   - failture: 失败的回调
-    class func GET(url : String, params : [String : Any]?,success : @escaping (_ data : Data)->(), failture : @escaping (_ error : NSError)->()) {
-        NetworkTools.request(.get, url: url, params: params, success: success, failture: failture)
+    class func GET(url : String, params : [String : Any]?,success : @escaping (_ data : Data)->(), failure : ((Int?, String) ->Void)?) {
+        NetworkTools.request(.get, url: url, params: params, success: success, failure: failure)
     }
     
     
@@ -69,8 +109,8 @@ extension NetworkTools{
     ///   - params: 参数
     ///   - success: 成功的回调
     ///   - failture: 失败的回调
-    class func POST(url : String, params : [String : Any]?,success : @escaping (_ data : Data) ->(), failture : @escaping (_ error : NSError)->()) {
-        NetworkTools.request(.post, url: url, params: params,success: success, failture: failture)
+    class func POST(url : String, params : [String : Any]?,success : @escaping (_ data : Data) ->(), failure : ((Int?, String) ->Void)?) {
+        NetworkTools.request(.post, url: url, params: params,success: success, failure: failure)
     }
     
     

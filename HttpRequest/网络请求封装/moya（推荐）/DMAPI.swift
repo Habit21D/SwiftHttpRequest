@@ -12,14 +12,24 @@ import Moya
 enum  DMAPI {
     ///搜索
     case search(kw: String ,pi: Int, pz: Int)
+    
+    ///其他接口...
+    case other1(param: String)
+    case other2
+
 }
 
+// 补全HttpRequest.swift中没有处理的参数 
 extension DMAPI: TargetType {
     
     var path: String {
         switch self {
         case .search:
             return "search-ajaxsearch-searchall"
+        case .other1:
+            return ""
+        case .other2:
+            return ""
         }
     }
     
@@ -31,6 +41,13 @@ extension DMAPI: TargetType {
             params["kw"] = kw
             params["pi"] = pi
             params["pz"] = pz
+            
+        case let .other1(param):
+            params["param"] = param
+            
+        default:
+            //不需要传参数的接口走这里
+            return .requestPlain
         }
         
         return .requestParameters(parameters: params, encoding: URLEncoding.default)

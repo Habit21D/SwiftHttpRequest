@@ -102,7 +102,7 @@ extension ViewController {
             self.model = model
             self.tableView.reloadData()
             
-            }.failure { (error) in
+            }.failure { (state_code, message) in
                 
             }.request()
     }
@@ -115,7 +115,7 @@ extension ViewController {
             let model = try? decoder.decode(DMModel.self, from: json)
             self.model = model
             self.tableView.reloadData()
-        }) { (error) in
+        }) { (state_code, message) in
             
         }
     }

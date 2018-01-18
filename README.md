@@ -1,4 +1,4 @@
-# Swift_HttpRequest
+# SwiftHttpRequest
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
@@ -8,7 +8,7 @@
 ## Demo说明
 Demo主要介绍Swift的网络部分，代码已更新到swift4
 
-### --网络部分
+### 一.网络部分
 请求均采用 `Alamofire`
 
 请求封装方式分为：
@@ -17,21 +17,18 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 * 3.仿AFN式请求（这应该是OC中常见的封装方式，但是真的不再适合swift这个优美的语言啦）
 
 
-### 一.Progress及信息处理
+### 二.Progress及信息处理
 加载动画及弹出框采用 MBProgressHUD
 
 
-### 二.数据解析
+### 三.数据解析
 在swift4之前，我一直用的是`HandyJSON`（下面有介绍）。在swift4之后我把model的解析转到到官方的Codable。
 
 
-本来这个demo只是我转swift时用来学习网络的，但是发现对一些同学很有帮助，所以重新整理了一下代码，将代码由swift3升级到swift4，并且抛弃了`HandyJSON`，因为swift语言的特性，要学就学最新的，所以demo中不再提供其他josn解析方式的示例
-
-
-### 三.缓存
+### 四.缓存
 缓存部分没有接入数据库，而是直接用了`write to file`,并将缓存封装到网络请求方法中
 
-## 本demo内容可直接用于项目开发，我在项目中大量使用，感觉还不错哈哈哈
+## 本demo内容可直接用于项目开发
 
 ---------------------
 ## 三方库介绍
@@ -43,6 +40,7 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 [MBProgressHUD](https://github.com/jdg/MBProgressHUD): 进度条，弹出框,OC写的库
 
 [Kingfisher](https://github.com/onevcat/Kingfisher): 加载网络图片，类似SDWebImage
+
 #### 已弃用
 
 [HandyJSON](https://github.com/alibaba/HandyJSON) 是阿里巴巴开源的model的映射库。使用方式类似OC中的MJExtention

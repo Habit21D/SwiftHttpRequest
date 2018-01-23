@@ -1,4 +1,4 @@
-# SwiftHttpRequest
+# SwiftHttpRequest(Swift4)
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
@@ -93,7 +93,7 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 
 ** 本demo内容可直接用于项目开发**
 
----------------------
+
 <h2 id="三方库介绍"> 三方库介绍</h2>
 
 [Alamofire](https://github.com/Alamofire/Alamofire)：Swift中著名的网络请求库
@@ -186,7 +186,7 @@ http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每
 }
 ```
 
-----
+
 
 <h2> 作者语：</h2>
 

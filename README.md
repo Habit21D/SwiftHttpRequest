@@ -7,16 +7,15 @@
 ----------
 * [更新说明](#version_explain)
     - [增加跨类型解析方式](#2.1update)
- 
-* [Demo说明](###Demo说明)
-    - [网络部分](###网络部分)
-    - [Progress及信息处理](###Progress及信息处理)
-    - [数据解析](###数据解析)
-    - [缓存](###缓存)
- 
- * [三方库介绍](##三方库介绍)
- * [接口说明](##接口说明)
- * [版本更新说明](##版本：)
+* [Demo说明](#demo_explain)
+    - [网络部分](#网络部分)
+    - [Progress及信息处理](#Progress及信息处理)
+    - [数据解析](#数据解析)
+    - [缓存](#缓存)
+ * [三方库介绍](#三方库介绍)
+ * [接口说明](#接口说明)
+ * [版本更新说明](#版本)
+ ---------
 <h2 id="version_explain"> 更新说明：</h2>
 <h4 id="2.1update"> 2.1</h4>
 `Codable`增加跨类型解析方式：感谢[hhfa008](https://github.com/hhfa008/NumberCodable)大神提供的方式
@@ -69,10 +68,10 @@ struct TStrInt: Codable {
 
 ```
 
-## Demo说明
+<h2 id="demo_explain"> Demo说明</h2>
 Demo主要介绍Swift的网络部分，代码已更新到swift4
 
-### 一. 网络部分
+<h3 id="网络部分"> 一. 网络部分</h3>
 请求均采用 `Alamofire`
 
 请求封装方式分为：
@@ -81,21 +80,21 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 - **3.仿AFN式请求（这应该是OC中常见的封装方式）**
 
 
-### 二. Progress及信息处理
+<h3 id="Progress及信息处理"> 二. Progress及信息处理</h3>
 加载动画及弹出框采用 MBProgressHUD
 
 
-### 三. 数据解析
+<h3 id="数据解析"> 三. 数据解析</h3>
 在swift4之前，我一直用的是`HandyJSON`（下面有介绍）。在swift4之后我把model的解析转到到官方的Codable。
 
 
-### 四. 缓存
+<h3 id="缓存"> 四. 缓存</h3>
 缓存部分没有接入数据库，而是直接用了`write to file`,并将缓存封装到网络请求方法中
 
-## 本demo内容可直接用于项目开发
+** 本demo内容可直接用于项目开发**
 
 ---------------------
-## 三方库介绍
+<h2 id="三方库介绍"> 三方库介绍</h2>
 
 [Alamofire](https://github.com/Alamofire/Alamofire)：Swift中著名的网络请求库
 
@@ -113,7 +112,7 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 
 具体可以看[在Swift语言中处理JSON - 转换JSON和Model](http://www.cocoachina.com/swift/20161010/17711.html)
 
-## 接口说明
+<h2 id="接口说明"> 接口说明</h2>
 本demo使用接口为多米音乐接口
 http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每页音乐数
 请求数据参数：kw=像我这样的人&pi=1&pz=1
@@ -189,7 +188,7 @@ http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每
 # End
 ----
 
-## 作者语：
+<h2> 作者语：</h2>
 
 希望能达到抛砖引玉的效果
 
@@ -199,7 +198,7 @@ http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每
 
 如果对你有帮助还请给个Star，谢谢🙏
 ----
-## 版本：
+<h2 id="版本"> 版本：</h2>
 
 ### 2.1 `Codable`跨类型解析：`Int`解析成`String`， `String`解析成`Int`
 

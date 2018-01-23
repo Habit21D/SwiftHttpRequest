@@ -18,11 +18,12 @@
  ---------
 <h2 id="version_explain"> 更新说明：</h2>
 <h4 id="2.1update">version 2.1:</h4>
+
 `Codable`增加跨类型解析方式：感谢[hhfa008](https://github.com/hhfa008/NumberCodable)大神提供的方式
 
-*后台最常用的类型，也是最容易让我们出错的就是Int和String类型的不确定，
-这里提供了后台同一个字段返回类型Int和String不确定时的解析方式，
-可自行增加Bool类型等。*
+*后台最常用的类型，也是最容易让我们出错的就是`Int`和`String`类型的不确定，
+这里提供了后台同一个字段返回类型`Int`和`String`不确定时的解析方式，
+可自行增加`Bool`类型等。*
 
 自定义解析类型如下,示例见demo
 ```Swift
@@ -72,6 +73,7 @@ struct TStrInt: Codable {
 Demo主要介绍Swift的网络部分，代码已更新到swift4
 
 <h3 id="网络部分"> 一. 网络部分</h3>
+
 请求均采用 `Alamofire`
 
 请求封装方式分为：
@@ -81,17 +83,20 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 
 
 <h3 id="Progress及信息处理"> 二. Progress及信息处理</h3>
-加载动画及弹出框采用 MBProgressHUD
+
+加载动画及弹出框采用 `MBProgressHUD`
 
 
 <h3 id="数据解析"> 三. 数据解析</h3>
+
 在swift4之前，我一直用的是`HandyJSON`（下面有介绍）。在swift4之后我把model的解析转到到官方的Codable。
 
 
 <h3 id="缓存"> 四. 缓存</h3>
+
 缓存部分没有接入数据库，而是直接用了`write to file`,并将缓存封装到网络请求方法中
 
-** 本demo内容可直接用于项目开发**
+**本demo内容可直接用于项目开发**
 
 
 <h2 id="三方库介绍"> 三方库介绍</h2>

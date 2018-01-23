@@ -4,6 +4,16 @@
 
 [在线转model工具](https://app.quicktype.io/#l=swift)
 
+* [更新说明](#更新说明：)
+ - [增加跨类型解析方式](#2.1)
+* [Demo说明](#Demo说明)
+ 1. [网络部分](#网络部分)
+ 1. [Progress及信息处理](#Progress及信息处理)
+ 1. [数据解析](#数据解析)
+ 1. [缓存](#缓存)
+* [三方库介绍](#三方库介绍)
+* [接口说明](#接口说明)
+* [版本更新说明](#版本：)
 ## 更新说明：
 #### 2.1
 `Codable`增加跨类型解析方式：感谢[hhfa008](https://github.com/hhfa008/NumberCodable)大神提供的方式
@@ -18,41 +28,40 @@
 // 一个含有int，string的类，可用于解析后台返回类型不确定的字段。即：把int\string解析成TStrInt且解析后TStrInt的int和string都有值
 //----- 使用时如果报未初始化的错误，而且找不到原因时，可以尝试先修复model以外的错误，也许这个错误就会消失。。。。 这是编译器提示错误的原因
 struct TStrInt: Codable {
-var int:Int {
-didSet {
-let stringValue = String(int)
-if  stringValue != string {
-string = stringValue
-}
-}
-}
+    var int:Int {
+        didSet {
+            let stringValue = String(int)
+            if  stringValue != string {
+            string = stringValue
+            }
+        }
+    }
 
-var string:String {
-didSet {
-if let intValue = Int(string), intValue != int {
-int = intValue
-}
-}
-}
+    var string:String {
+        didSet {
+            if let intValue = Int(string), intValue != int {
+            int = intValue
+            }
+        }
+    }
 
-init(from decoder: Decoder) throws {
-let singleValueContainer = try decoder.singleValueContainer()
+    init(from decoder: Decoder) throws {
+        let singleValueContainer = try decoder.singleValueContainer()
 
-if let stringValue = try? singleValueContainer.decode(String.self)
-{
-string = stringValue
-int = Int(stringValue) ?? 0
+        if let stringValue = try? singleValueContainer.decode(String.self)
+        {
+            string = stringValue
+            int = Int(stringValue) ?? 0
 
-} else if let intValue = try? singleValueContainer.decode(Int.self)
-{
-int = intValue
-string = String(intValue);
-} else
-{
-int = 0
-string = ""
-}
-}
+        } else if let intValue = try? singleValueContainer.decode(Int.self)
+        {
+            int = intValue
+            string = String(intValue);
+        } else {
+            int = 0
+            string = ""
+        }
+    }
 }
 
 ```
@@ -93,7 +102,7 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 
 [Kingfisher](https://github.com/onevcat/Kingfisher): 加载网络图片，类似SDWebImage
 
-#### 已弃用
+**已弃用**
 
 [HandyJSON](https://github.com/alibaba/HandyJSON) 是阿里巴巴开源的model的映射库。使用方式类似OC中的MJExtention
 
@@ -107,7 +116,7 @@ http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每
 请求数据参数：kw=像我这样的人&pi=1&pz=1
 
 返回实例：
-```
+```JSON
 {
 "album_offset": 0,
 "albums": [

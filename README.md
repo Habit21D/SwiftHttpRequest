@@ -4,6 +4,58 @@
 
 [在线转model工具](https://app.quicktype.io/#l=swift)
 
+##更新说明：
+#### 2.1
+`Codable`增加跨类型解析方式：感谢`hhfa008`大神提供的方式，他的github链接为（https://github.com/hhfa008/NumberCodable）
+
+*后台最常用的类型，也是最容易让我们出错的就是Int和String类型的不确定，
+这里提供了后台同一个字段返回类型Int和String不确定时的解析方式，
+可自行增加Bool类型等。*
+
+自定义解析类型如下,示例见demo
+```
+///跨类型解析方式
+// 一个含有int，string的类，可用于解析后台返回类型不确定的字段。即：把int\string解析成TStrInt且解析后TStrInt的int和string都有值
+//----- 使用时如果报未初始化的错误，而且找不到原因时，可以尝试先修复model以外的错误，也许这个错误就会消失。。。。 这是编译器提示错误的原因
+struct TStrInt: Codable {
+var int:Int {
+didSet {
+let stringValue = String(int)
+if  stringValue != string {
+string = stringValue
+}
+}
+}
+
+var string:String {
+didSet {
+if let intValue = Int(string), intValue != int {
+int = intValue
+}
+}
+}
+
+init(from decoder: Decoder) throws {
+let singleValueContainer = try decoder.singleValueContainer()
+
+if let stringValue = try? singleValueContainer.decode(String.self)
+{
+string = stringValue
+int = Int(stringValue) ?? 0
+
+} else if let intValue = try? singleValueContainer.decode(Int.self)
+{
+int = intValue
+string = String(intValue);
+} else
+{
+int = 0
+string = ""
+}
+}
+}
+
+```
 
 ## Demo说明
 Demo主要介绍Swift的网络部分，代码已更新到swift4
@@ -12,9 +64,9 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 请求均采用 `Alamofire`
 
 请求封装方式分为：
-* 1.Moya（一个star很多的`Alamofire`的上层封装，为本demo推荐方式。我在使用过程中发现moya是极其优美的网络请求方式）
-* 2.链式请求（如果你刚刚从OC转到swift，可能还不适应moya的方式，那么也可以用这种请求方式）
-* 3.仿AFN式请求（这应该是OC中常见的封装方式）
+- **1.Moya（一个star很多的`Alamofire`的上层封装，为本demo推荐方式。我在使用过程中发现moya是极其优美的网络请求方式）**
+- **2.链式请求（如果你刚刚从OC转到swift，可能还不适应moya的方式，那么也可以用这种请求方式）**
+- **3.仿AFN式请求（这应该是OC中常见的封装方式）**
 
 
 ### 二. Progress及信息处理
@@ -137,9 +189,11 @@ http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每
 ----
 ## 版本：
 
+### 2.1 `Codable`跨类型解析：`Int`解析成`String`， `String`解析成`Int`
+
 ### 2.0 更新到swift4，重新整理代码
 
-### 1.2 新增moya的demo
+### 1.2 新增`moya`的demo
 
 ### 1.1 新增链式请求的封装
 * 链式请求可以只组合需要的函数，本身默认为常用方式，简化常用的链式调用

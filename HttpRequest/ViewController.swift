@@ -87,6 +87,14 @@ extension ViewController {
             let model = try? decoder.decode(DMModel.self, from: json)
             self.model = model
             self.tableView.reloadData()
+            // ------- 跨类型解析验证 ----------
+            print("total_albums更改前\(model?.total_albums)")
+            model?.total_albums.int = 999 //给TStrInt的int赋值会同时赋值给string
+            print("total_albums更改后\(model?.total_albums)")
+            print("total_artists更改前\(model?.total_artists)")
+            model?.total_artists.string = "123" //给TStrInt的string赋值会同时赋值给int
+            print("total_artists更改后\(model?.total_artists)")
+             // ------- 跨类型解析验证 end ----------
         }) { (error_code, message) in
             
         }

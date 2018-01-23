@@ -13,9 +13,9 @@ class DMModel: Codable {
     var artist_offset: Int
     var dm_error: Int
     var error_msg: String
-    var recommend: Int
-    var total_albums: Int
-    var total_artists: Int
+    var recommend: TStrInt
+    var total_albums: TStrInt
+    var total_artists: TStrInt
     var total_tracks: Int
     var track_offset: Int
     var artists: [DMModelArtists]?

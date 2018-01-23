@@ -17,7 +17,7 @@
  * [版本更新说明](#版本)
  ---------
 <h2 id="version_explain"> 更新说明：</h2>
-<h4 id="2.1update"> 2.1</h4>
+<h4 id="2.1update">version 2.1:</h4>
 `Codable`增加跨类型解析方式：感谢[hhfa008](https://github.com/hhfa008/NumberCodable)大神提供的方式
 
 *后台最常用的类型，也是最容易让我们出错的就是Int和String类型的不确定，

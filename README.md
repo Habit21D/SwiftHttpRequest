@@ -4,9 +4,9 @@
 
 [在线转model工具](https://app.quicktype.io/#l=swift)
 
-##更新说明：
+## 更新说明：
 #### 2.1
-`Codable`增加跨类型解析方式：感谢`hhfa008`大神提供的方式，他的github链接为（https://github.com/hhfa008/NumberCodable）
+`Codable`增加跨类型解析方式：感谢[hhfa008](https://github.com/hhfa008/NumberCodable)大神提供的方式
 
 *后台最常用的类型，也是最容易让我们出错的就是Int和String类型的不确定，
 这里提供了后台同一个字段返回类型Int和String不确定时的解析方式，

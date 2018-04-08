@@ -1,5 +1,7 @@
 # SwiftHttpRequest(Swift4)
 
+这里主要介绍了swift4版本的网络请求，封装中带有Progress及错误信息处理，缓存等的统一解决方案
+
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
 [在线转model工具](https://app.quicktype.io/#l=swift)

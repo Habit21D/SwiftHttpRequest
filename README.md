@@ -1,5 +1,7 @@
 # SwiftHttpRequest(Swift4)
 
+** 接口使用的多米音乐的，无奈多米倒闭了，真是世事无常啊 **
+
 这里主要介绍了swift4版本的网络请求，封装中带有Progress及错误信息处理，缓存等的统一解决方案
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)

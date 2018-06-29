@@ -26,14 +26,19 @@ class HttpRequest {
     ///   - API: 要使用的moya请求枚举（TargetType）
     ///   - target: TargetType里的枚举值
     ///   -cache: 是否缓存
+    ///   -cacheHandle: 需要单独处理缓存的数据时使用，（默认为空，使用success处理缓存数据）
     ///   - success: 成功的回调
     ///   - error: 连接服务器成功但是数据获取失败
     ///   - failure: 连接服务器失败
-    class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
+    class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         let provider = MoyaProvider<T>()
         
         if cache, let data = TSaveFiles.read(path: target.path) {
-            success(data)
+            if let block = cacheHandle {
+                block(data)
+            }else {
+                success(data)
+            }
         }else {
             TProgressHUD.show()
         }

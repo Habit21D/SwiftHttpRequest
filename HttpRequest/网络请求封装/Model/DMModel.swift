@@ -33,11 +33,21 @@ class DMModelAlbums: Codable {
     var release_date: String
     var type: String
     
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1")
+    }
+    
     class DMModelAlbumsArtists: Codable {
         var id: Int
         var name: String
         var portrait: String?
         var valid: Bool
+        
+        @available(*, deprecated, message: "Do not use.")
+        init() {
+            fatalError("Swift 4.1")
+        }
     }
 }
 
@@ -48,6 +58,11 @@ class DMModelArtists: Codable {
     var num_tracks: Int
     var portrait: String
     var valid: Bool
+    
+    @available(*, deprecated, message: "Do not use.")
+    init() {
+        fatalError("Swift 4.1")
+    }
 }
 
 

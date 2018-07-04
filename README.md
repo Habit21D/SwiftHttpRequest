@@ -8,6 +8,9 @@
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
 [在线转model工具](https://app.quicktype.io/#l=swift)
+--------
+
+联系我： QQ 296369928
 
 ----------
 * [更新说明](#version_explain)

@@ -4,19 +4,19 @@
 //
 //  Created by jin on 2017/12/15.
 //  Copyright © 2017年 jin. All rights reserved.
-//
+//  moya封装
 
 import Foundation
 import Moya
 import MBProgressHUD
 
-///错误码 根据自家后台数据确定
+///状态码 根据自家后台数据更改
 let NET_STATE_CODE_SUCCESS = 0
 let NET_STATE_CODE_LOGIN = 4000
 
 class TBaseModel: Decodable {
-    var dm_error: Int
-    var error_msg: String
+    var state_code: Int
+    var message: String
 }
 
 class HttpRequest {
@@ -33,13 +33,16 @@ class HttpRequest {
     class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         let provider = MoyaProvider<T>()
         
+        //如果需要读取缓存，则优先读取缓存内容
         if cache, let data = TSaveFiles.read(path: target.path) {
+            //cacheHandle不为nil则使用cacheHandle处理缓存，否则使用success处理
             if let block = cacheHandle {
                 block(data)
             }else {
                 success(data)
             }
         }else {
+            //读取缓存速度较快，无需显示hud；仅从网络加载数据时，显示hud。
             TProgressHUD.show()
         }
         
@@ -47,49 +50,46 @@ class HttpRequest {
             TProgressHUD.hide()
             switch result {
             case let .success(response):
-                do {
-                    // ***********这里可以统一处理错误码，统一弹出错误 ****
-                    let _ = try response.filterSuccessfulStatusCodes()
-                    
-                    let decoder = JSONDecoder()
-                    let baseModel = try? decoder.decode(TBaseModel.self, from: response.data)
-                    guard let model = baseModel else {
-                        if let failureBlack = failure {
-                            failureBlack(nil, "解析失败")
-                        }
-                        return
+                // ***********  这里可以统一处理状态码 ****
+                //从json中解析出status_code状态码和message，用于后面的处理
+                let decoder = JSONDecoder()
+                let baseModel = try? decoder.decode(TBaseModel.self, from: response.data)
+                guard let model = baseModel else {
+                    if let failureBlack = failure {
+                        failureBlack(nil, "数据解析失败")
                     }
-                    switch (model.dm_error) {
-                    case NET_STATE_CODE_SUCCESS :
-                        //数据返回正确
-                        if cache {
-                            //缓存
-                            TSaveFiles.save(path: target.path, data: response.data)
-                        }
-                        success(response.data)
-                        break
-                    case NET_STATE_CODE_LOGIN:
-                        //请重新登录
-                        if let failureBlack = failure {
-                            failureBlack(model.dm_error ,model.error_msg)
-                        }
-                        alertLogin(model.error_msg)
-                        break
-                    default:
-                        //其他错误
-                        failureHandle(failure: failure, stateCode: nil, message: model.error_msg)
-                        break
-                    }
+                    return
                 }
-                catch let error {
-                    guard let error = error as? MoyaError else { return }
-                    let statusCode = error.response?.statusCode ?? 0
-                    let errorCode = "请求出错，错误码：" + String(statusCode)
-                    failureHandle(failure: failure, stateCode: statusCode, message: error.errorDescription ?? errorCode)
+                
+                //状态码：后台会规定数据正确的状态码，未登录的状态码等，可以统一处理
+                switch (model.state_code) {
+                case NET_STATE_CODE_SUCCESS :
+                    //数据返回正确
+                    if cache {
+                        //缓存
+                        TSaveFiles.save(path: target.path, data: response.data)
+                    }
+                    success(response.data)
+                    break
+                case NET_STATE_CODE_LOGIN:
+                    //请重新登录
+                    if let failureBlack = failure {
+                        failureBlack(model.state_code ,model.message)
+                    }
+                    alertLogin(model.message)
+                    break
+                default:
+                    //其他错误
+                    failureHandle(failure: failure, stateCode: model.state_code, message: model.message)
+                    break
                 }
             // ********************
-            case .failure(_):
-                failureHandle(failure: failure, stateCode: nil, message: "网络异常")
+            case let .failure(error):
+                //请求数据失败，可能是404（无法找到指定位置的资源），408（请求超时）等错误
+                //可百度查找“http状态码”
+                let statusCode = error.response?.statusCode ?? 0
+                let errorCode = "请求出错，错误码：" + String(statusCode)
+                failureHandle(failure: failure, stateCode: statusCode, message: error.errorDescription ?? errorCode)
             }
         }
         
@@ -97,7 +97,7 @@ class HttpRequest {
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
             TAlert.show(type: .error, text: message)
             if let failureBlack = failure {
-                failureBlack(nil ,message)
+                failureBlack(stateCode ,message)
             }
         }
         
@@ -109,7 +109,8 @@ class HttpRequest {
 }
 
 
-//一次性处理的参数
+//TargetType协议可以一次性处理的参数
+//根据自己的需要更改，不能统一处理的移除下面的代码
 public extension TargetType {
     var baseURL: URL {
         return URL(string: "http://v5.pc.duomi.com/")!

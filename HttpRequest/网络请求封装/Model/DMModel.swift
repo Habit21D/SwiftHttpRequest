@@ -4,7 +4,7 @@
 //
 //  Created by 易金 on 2018/1/5.
 //  Copyright © 2018年 jin. All rights reserved.
-//
+//  多米音乐的model
 
 import Foundation
 

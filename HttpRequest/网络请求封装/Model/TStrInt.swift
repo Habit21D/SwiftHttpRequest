@@ -4,7 +4,7 @@
 //
 //  Created by 易金 on 2018/1/23.
 //  Copyright © 2018年 jin. All rights reserved.
-//
+//  用于处理后台服务器同一个字段返回数据类型可变的情况
 
 import Foundation
 ///跨类型解析方式

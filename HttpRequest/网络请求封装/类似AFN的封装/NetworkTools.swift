@@ -47,7 +47,7 @@ class NetworkTools {
                         }
                         return
                     }
-                    switch (model.dm_error) {
+                    switch (model.state_code) {
                     case NET_STATE_CODE_SUCCESS :
                         //数据返回正确
                         success(json)
@@ -55,18 +55,18 @@ class NetworkTools {
                     case NET_STATE_CODE_LOGIN:
                         //请重新登录
                         if let failureBlack = failure {
-                            failureBlack(model.dm_error ,model.error_msg)
+                            failureBlack(model.state_code ,model.message)
                         }
-                        alertLogin(model.error_msg)
+                        alertLogin(model.message)
                         break
                     default:
                         //其他错误
-                        failureHandle(failure: failure, stateCode: nil, message: model.error_msg)
+                        failureHandle(failure: failure, stateCode: model.state_code, message: model.message)
                         break
                     }
                 }
-            case .failure(_):
-                failureHandle(failure: failure, stateCode: nil, message: "网络异常")
+            case let .failure(error):
+                failureHandle(failure: failure, stateCode: nil, message: error.localizedDescription)
             }
         }
         
@@ -74,7 +74,7 @@ class NetworkTools {
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
             TAlert.show(type: .error, text: message)
             if let failureBlack = failure {
-                failureBlack(nil ,message)
+                failureBlack(stateCode ,message)
             }
         }
         

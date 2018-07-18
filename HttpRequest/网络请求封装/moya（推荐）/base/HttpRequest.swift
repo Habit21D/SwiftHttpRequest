@@ -49,7 +49,6 @@ class HttpRequest {
             case let .success(response):
                 do {
                     // ***********这里可以统一处理错误码，统一弹出错误 ****
-                    let _ = try response.filterSuccessfulStatusCodes()
                     
                     let decoder = JSONDecoder()
                     let baseModel = try? decoder.decode(TBaseModel.self, from: response.data)

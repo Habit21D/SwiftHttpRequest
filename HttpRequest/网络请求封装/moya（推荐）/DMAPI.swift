@@ -50,6 +50,7 @@ extension DMAPI: TargetType {
             return .requestPlain
         }
         
+        //Task是一个枚举值，根据后台需要的数据，选择不同的http task。
         return .requestParameters(parameters: params, encoding: URLEncoding.default)
     }
     

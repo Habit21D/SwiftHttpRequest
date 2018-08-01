@@ -145,7 +145,10 @@ extension URLRequest {
     
     /// global common params
     private var commonParams: [String: Any] {
-        return ["token": ""]
+        //所有接口的公共参数添加在这里
+        return ["token": "",
+                "version": ""
+        ]
     }
     
     mutating func appendCommonParams() -> URLRequest {

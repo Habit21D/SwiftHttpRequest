@@ -31,7 +31,9 @@ class HttpRequest {
     ///   - error: 连接服务器成功但是数据获取失败
     ///   - failure: 连接服务器失败
     class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
-        let provider = MoyaProvider<T>()
+        let provider = MoyaProvider<T>(plugins: [
+            RequestHandlingPlugin()
+            ])
         
         //如果需要读取缓存，则优先读取缓存内容
         if cache, let data = TSaveFiles.read(path: target.path) {
@@ -127,9 +129,39 @@ public extension TargetType {
     var method: Moya.Method {
         return .post
     }
-    
-    
 }
 
+// --- 公共参数 ----
+class RequestHandlingPlugin: PluginType {
+    
+    /// Called to modify a request before sending
+    public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        var mutateableRequest = request
+        return mutateableRequest.appendCommonParams();
+    }
+}
 
+extension URLRequest {
+    
+    /// global common params
+    private var commonParams: [String: Any] {
+        return ["token": ""]
+    }
+    
+    mutating func appendCommonParams() -> URLRequest {
+        let request = try? encoded(parameters: commonParams, parameterEncoding: URLEncoding(destination: .queryString))
+        assert(request != nil, "append common params failed, please check common params value")
+        return request!
+    }
+    
+    func encoded(parameters: [String: Any], parameterEncoding: ParameterEncoding) throws -> URLRequest {
+        do {
+            return try parameterEncoding.encode(self, with: parameters)
+        } catch {
+            throw MoyaError.parameterEncoding(error)
+        }
+    }
+}
+
+// --- 公共参数end ----
 

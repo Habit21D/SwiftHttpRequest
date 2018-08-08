@@ -10,8 +10,8 @@ import Foundation
 import Moya
 
 enum  DMAPI {
-    ///搜索
-    case search(kw: String ,pi: Int, pz: Int)
+    //排行榜
+    case rankList
     
     ///其他接口...
     case other1(param: String)
@@ -24,8 +24,8 @@ extension DMAPI: TargetType {
     
     var path: String {
         switch self {
-        case .search:
-            return "search-ajaxsearch-searchall"
+        case .rankList:
+            return "rank/list"
         case .other1:
             return ""
         case .other2:
@@ -37,11 +37,9 @@ extension DMAPI: TargetType {
         var params: [String: Any] = [:]
         
         switch self {
-        case let .search(kw ,pi, pz):
-            params["kw"] = kw
-            params["pi"] = pi
-            params["pz"] = pz
-            
+        case let .rankList:
+            return .requestPlain
+
         case let .other1(param):
             params["param"] = param
             

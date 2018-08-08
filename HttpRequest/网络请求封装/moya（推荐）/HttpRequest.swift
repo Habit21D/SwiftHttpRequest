@@ -11,12 +11,16 @@ import Moya
 import MBProgressHUD
 
 ///状态码 根据自家后台数据更改
-let NET_STATE_CODE_SUCCESS = 0
+let NET_STATE_CODE_SUCCESS = 1
 let NET_STATE_CODE_LOGIN = 4000
 
-class TBaseModel: Decodable {
-    var state_code: Int
-    var message: String
+struct TBaseModel: Decodable {
+    var code: Int
+    var data: Data
+    struct Data: Decodable {
+        var stateCode: Int
+        var message: String
+    }
 }
 
 class HttpRequest {
@@ -64,7 +68,7 @@ class HttpRequest {
                 }
                 
                 //状态码：后台会规定数据正确的状态码，未登录的状态码等，可以统一处理
-                switch (model.state_code) {
+                switch (model.code) {
                 case NET_STATE_CODE_SUCCESS :
                     //数据返回正确
                     if cache {
@@ -76,13 +80,13 @@ class HttpRequest {
                 case NET_STATE_CODE_LOGIN:
                     //请重新登录
                     if let failureBlack = failure {
-                        failureBlack(model.state_code ,model.message)
+                        failureBlack(model.data.stateCode ,model.data.message)
                     }
-                    alertLogin(model.message)
+                    alertLogin(model.data.message)
                     break
                 default:
                     //其他错误
-                    failureHandle(failure: failure, stateCode: model.state_code, message: model.message)
+                    failureHandle(failure: failure, stateCode: model.data.stateCode, message: model.data.message)
                     break
                 }
             // ********************
@@ -115,7 +119,7 @@ class HttpRequest {
 //根据自己的需要更改，不能统一处理的移除下面的代码
 public extension TargetType {
     var baseURL: URL {
-        return URL(string: "http://v5.pc.duomi.com/")!
+        return URL(string: "http://app.u17.com/v3/appV3_3/ios/phone/")!
     }
     
     var headers: [String : String]? {

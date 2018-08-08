@@ -47,7 +47,7 @@ class NetworkTools {
                         }
                         return
                     }
-                    switch (model.state_code) {
+                    switch (model.code) {
                     case NET_STATE_CODE_SUCCESS :
                         //数据返回正确
                         success(json)
@@ -55,13 +55,13 @@ class NetworkTools {
                     case NET_STATE_CODE_LOGIN:
                         //请重新登录
                         if let failureBlack = failure {
-                            failureBlack(model.state_code ,model.message)
+                            failureBlack(model.data.stateCode ,model.data.message)
                         }
-                        alertLogin(model.message)
+                        alertLogin(model.data.message)
                         break
                     default:
                         //其他错误
-                        failureHandle(failure: failure, stateCode: model.state_code, message: model.message)
+                        failureHandle(failure: failure, stateCode: model.data.stateCode, message: model.data.message)
                         break
                     }
                 }

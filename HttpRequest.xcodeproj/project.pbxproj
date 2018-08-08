@@ -97,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		39A6AD71211AC1BC000779C2 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				E97B50E71FFF491700D3E795 /* DMAPI.swift */,
+				E97B50EA1FFF4A7E00D3E795 /* DMModel.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		8F4B403030B7E47C3356E6D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,7 +181,7 @@
 		E963E85C1FFF1C3F0047B134 /* 网络请求封装 */ = {
 			isa = PBXGroup;
 			children = (
-				E97B50E91FFF4A7000D3E795 /* Model */,
+				39A6AD71211AC1BC000779C2 /* API */,
 				E963E85F1FFF1C640047B134 /* moya（推荐） */,
 				E963E85E1FFF1C570047B134 /* 链式网络请求 */,
 				E963E85D1FFF1C4B0047B134 /* 类似AFN的封装 */,
@@ -199,29 +208,12 @@
 		E963E85F1FFF1C640047B134 /* moya（推荐） */ = {
 			isa = PBXGroup;
 			children = (
-				E97B50E61FFF490000D3E795 /* base */,
-				E97B50E71FFF491700D3E795 /* DMAPI.swift */,
-			);
-			path = "moya（推荐）";
-			sourceTree = "<group>";
-		};
-		E97B50E61FFF490000D3E795 /* base */ = {
-			isa = PBXGroup;
-			children = (
+				E9BA184320171FF9004B4DE5 /* TStrInt.swift */,
 				E97B50E41FFF35E400D3E795 /* TSaveFiles.swift */,
 				E97B50DF1FFF341D00D3E795 /* HttpRequest.swift */,
 				E97B50E21FFF356200D3E795 /* THUD.swift */,
 			);
-			path = base;
-			sourceTree = "<group>";
-		};
-		E97B50E91FFF4A7000D3E795 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E97B50EA1FFF4A7E00D3E795 /* DMModel.swift */,
-				E9BA184320171FF9004B4DE5 /* TStrInt.swift */,
-			);
-			path = Model;
+			path = "moya（推荐）";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

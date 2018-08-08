@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     lazy var tableView: UITableView = {
         let table = UITableView(frame: CGRect(x:0, y: 100, width: self.view.frame.width, height: self.view.frame.height - 100), style: .plain)
         table.rowHeight = UITableViewAutomaticDimension
-        table.estimatedRowHeight = 100
+        table.estimatedRowHeight = 120
         
         table.delegate = self
         table.dataSource = self
@@ -54,12 +54,12 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return model?.albums?.count ?? 0
+        return model?.data.returnData?.rankinglist?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DMCell = tableView.dequeueReusableCell(withIdentifier: "DMCell", for: indexPath) as! DMCell
-        cell.album = model?.albums?[indexPath.row]
+        cell.model = model?.data.returnData?.rankinglist?[indexPath.row]
         return cell
     }
 }
@@ -81,20 +81,12 @@ extension ViewController {
     
     /// moya请求
     func loadDataByMoay() {
-        let kw = "我"
-        HttpRequest.loadData(API: DMAPI.self, target: .search(kw: kw, pi: pi, pz: pz), success: { (json) in
+        HttpRequest.loadData(API: DMAPI.self, target: .rankList, success: { (json) in
             let decoder = JSONDecoder()
             let model = try? decoder.decode(DMModel.self, from: json)
             self.model = model
             self.tableView.reloadData()
-            // ------- 跨类型解析验证 ----------
-            print("total_albums更改前\(model?.total_albums)")
-            model?.total_albums.int = 999 //给TStrInt的int赋值会同时赋值给string
-            print("total_albums更改后\(model?.total_albums)")
-            print("total_artists更改前\(model?.total_artists)")
-            model?.total_artists.string = "123" //给TStrInt的string赋值会同时赋值给int
-            print("total_artists更改后\(model?.total_artists)")
-             // ------- 跨类型解析验证 end ----------
+            
         }) { (error_code, message) in
             
         }
@@ -102,9 +94,7 @@ extension ViewController {
     
     /// 链式请求
     func loadDataByChain() {
-        let kw = "爱"
-        NetworkKit().url("http://v5.pc.duomi.com/search-ajaxsearch-searchall").requestType(.post).params(["kw": kw, "pi": pi, "pz": pz]).success { (json) in
-            
+        NetworkKit().url("http://app.u17.com/v3/appV3_3/ios/phone/rank/list").requestType(.post).success { (json) in
             let decoder = JSONDecoder()
             let model = try? decoder.decode(DMModel.self, from: json)
             self.model = model
@@ -117,8 +107,7 @@ extension ViewController {
     
     /// 类AFN请求
     func loadDataByAFN() {
-        let kw = "你"
-        NetworkTools.POST(url: "http://v5.pc.duomi.com/search-ajaxsearch-searchall", params: ["kw": kw, "pi": pi, "pz": pz], success: { (json) in
+        NetworkTools.POST(url: "http://app.u17.com/v3/appV3_3/ios/phone/rank/list", params: nil, success: { (json) in
             let decoder = JSONDecoder()
             let model = try? decoder.decode(DMModel.self, from: json)
             self.model = model

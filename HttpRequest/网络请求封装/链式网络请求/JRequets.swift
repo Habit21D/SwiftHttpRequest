@@ -96,7 +96,7 @@ extension NetworkKit{
                         }
                         return
                     }
-                    switch (model.state_code) {
+                    switch (model.code) {
                     case NET_STATE_CODE_SUCCESS :
                         //数据返回正确
                         self.success?(json)
@@ -104,13 +104,13 @@ extension NetworkKit{
                     case NET_STATE_CODE_LOGIN:
                         //请重新登录
                         if let failureBlack = self.failure {
-                            failureBlack(model.state_code ,model.message)
+                            failureBlack(model.data.stateCode ,model.data.message)
                         }
-                        alertLogin(model.message)
+                        alertLogin(model.data.message)
                         break
                     default:
                         //其他错误
-                        failureHandle(failure: self.failure, stateCode: model.state_code, message: model.message)
+                        failureHandle(failure: self.failure, stateCode: model.data.stateCode, message: model.data.message)
                         break
                     }
                 }

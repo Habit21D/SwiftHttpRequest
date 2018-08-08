@@ -11,7 +11,7 @@ import SnapKit
 import Kingfisher
 class DMCell: UITableViewCell {
 
-    var album: DMModelAlbums? {
+    var model: DMModel.DMRankingList? {
         didSet {
             uploadUI()
         }
@@ -19,12 +19,13 @@ class DMCell: UITableViewCell {
     
     let iconImageView: UIImageView = UIImageView()
     let nameLabel: UILabel = UILabel()
-    let timeLabel: UILabel = UILabel()
+    let descLabel: UILabel = UILabel()
     
     func UISet() {
         iconImageView.backgroundColor = UIColor.lightGray
-        nameLabel.textColor = UIColor.red
-        timeLabel.textColor = UIColor.gray
+        nameLabel.textColor = UIColor.black
+        descLabel.textColor = UIColor.gray
+        descLabel.numberOfLines = 0
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -32,7 +33,7 @@ class DMCell: UITableViewCell {
         UISet()
         self.contentView.addSubview(iconImageView)
         self.contentView.addSubview(nameLabel)
-        self.contentView.addSubview(timeLabel)
+        self.contentView.addSubview(descLabel)
         makeConstraints()
     }
     
@@ -55,17 +56,19 @@ class DMCell: UITableViewCell {
         iconImageView.snp.makeConstraints { (maker) in
             maker.left.top.equalToSuperview().offset(10)
             maker.bottom.equalToSuperview().offset(-10)
-            maker.width.height.equalTo(100)
+            maker.width.equalTo(130)
+            maker.height.equalTo(100)
         }
         
         nameLabel.snp.makeConstraints { (maker) in
-            maker.left.equalTo(iconImageView.snp.right)
+            maker.left.equalTo(iconImageView.snp.right).offset(10)
             maker.right.equalToSuperview().offset(-10)
             maker.top.equalTo(iconImageView).offset(10)
         }
         
-        timeLabel.snp.makeConstraints { (maker) in
-            maker.left.right.equalTo(nameLabel)
+        descLabel.snp.makeConstraints { (maker) in
+            maker.left.equalTo(iconImageView.snp.right).offset(10)
+            maker.right.equalToSuperview().offset(-10)
             maker.bottom.equalTo(iconImageView).offset(-10)
         }
     }
@@ -75,17 +78,14 @@ class DMCell: UITableViewCell {
 extension DMCell {
     
     func uploadUI() {
-        guard let model = album else {
+        guard let model = model else {
             return
         }
+        let url = URL(string: model.cover)
+        iconImageView.kf.setImage(with: url)
         
-        if let cover = model.cover {
-            let url = URL(string: cover)
-            iconImageView.kf.setImage(with: url)
-        }
-       
-        nameLabel.text = model.name
+        nameLabel.text = model.title + "榜"
         
-        timeLabel.text = model.release_date
+        descLabel.text = model.subTitle
     }
 }

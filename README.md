@@ -1,14 +1,10 @@
 # SwiftHttpRequest(Swift4)
 ![](https://img.shields.io/badge/Swift-4.0-green.svg?style=flat)
 
-**接口使用的多米音乐的，无奈多米倒闭了，真是世事无常啊。现在项目的接口还是使用的多米，因此会请求错误，我会尽快更改接口的。**
-
 
 这里主要介绍了swift4版本的网络请求，封装中带有Progress及错误信息处理，缓存等的统一解决方案
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
-
-[在线转model工具](https://app.quicktype.io/#l=swift)
 
 ----------
 * [更新说明](#version_explain)
@@ -124,76 +120,53 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 具体可以看[在Swift语言中处理JSON - 转换JSON和Model](http://www.cocoachina.com/swift/20161010/17711.html)
 
 <h2 id="接口说明"> 接口说明</h2>
-本demo使用接口为多米音乐接口
-http://v5.pc.duomi.com/search-ajaxsearch-searchall?kw=关键字&pi=页码&pz=每页音乐数
-请求数据参数：kw=像我这样的人&pi=1&pz=1
+
+接口：http://app.u17.com/v3/appV3_3/ios/phone/rank/list
 
 返回实例：
 ```JSON
 {
-"album_offset": 0,
-"albums": [
-{
-"artists": [
-{
-"id": 61799986,
-"name": "Mc名决",
-"portrait": null,
-"valid": false
-}
-],
-"available": true,
-"company": "",
-"cover": "http://pic.cdn.duomi.com/imageproxy2/dimgm/scaleImage?url=http://img.kxting.cn//p1/08/16/72494779.jpg&w=150&h=150&s=100&c=0&o=0&m=",
-"id": 2742662,
-"name": "像我这样的人",
-"num_tracks": 4,
-"release_date": "2017-08-22",
-"type": "EP/单曲"
-}
-],
-"artist_offset": 0,
-"artists": null,
-"dm_error": 0,
-"error_msg": "操作成功",
-"recommend": 0,
-"total_albums": 1,
-"total_artists": 0,
-"total_tracks": 6,
-"track_offset": 0,
-"tracks": [
-{
-"album": {
-"cover": "/p1/12/17/72493295.jpg",
-"id": 2741390,
-"name": "裙娣"
-},
-"artists": [
-{
-"id": 61792091,
-"name": "DJ马哥",
-"num_albums": 35,
-"num_tracks": 233,
-"portrait": "",
-"valid": false
-}
-],
-"availability": "1110",
-"dlyric": "",
-"id": 28136457,
-"medias": [
-{
-"bitrate": 320,
-"p2purl": "1A4DF5035CE09DB8DF0500000060CFABAC000000A9.mp3"
-}
-],
-"mv": 0,
-"slyric": "",
-"title": "像我这样的人",
-"isdown": "1",
-"isplay": "1"
-}
-]
+    "code": 1,
+    "data": {
+        "stateCode": 1,
+        "message": "成功",
+        "returnData": {
+            "rankinglist": [
+                {
+                    "title": "月票",
+                    "subTitle": "来不及了快上车，老司机票选人气漫画，带你飞！",
+                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920243_f2kF1UculvH7.jpg",
+                    "argName": "sort",
+                    "argValue": "23",
+                    "rankingType": "月票值"
+                },
+                {
+                    "title": "点击",
+                    "subTitle": "厉害了我的大触，原来大家都在这里看漫画！？",
+                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920257_yznXvXJcrvk8.jpg",
+                    "argName": "sort",
+                    "argValue": "25",
+                    "rankingType": "点击值"
+                },
+                {
+                    "title": "吐槽",
+                    "subTitle": "不可描述的吐槽，画面太美，快来看看。",
+                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920418_vA222B8m6qi3.jpg",
+                    "argName": "sort",
+                    "argValue": "20",
+                    "rankingType": "吐槽值"
+                },
+                {
+                    "title": "新作",
+                    "subTitle": "拒绝身体被掏空，人气新作为你补补血。",
+                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920437_Cmg3we0vH3me.jpg",
+                    "argName": "topic",
+                    "argValue": "16",
+                    "rankingType": "新作值"
+                }
+            ]
+        }
+    }
 }
 ```
 

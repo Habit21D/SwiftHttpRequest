@@ -81,15 +81,13 @@ extension ViewController {
     
     /// moya请求
     func loadDataByMoay() {
-        HttpRequest.loadData(API: DMAPI.self, target: .rankList, success: { (json) in
+        HttpRequest.loadData(API: DMAPI.self, target: .rankList, cache: true, success: { (json) in
             let decoder = JSONDecoder()
             let model = try? decoder.decode(DMModel.self, from: json)
             self.model = model
             self.tableView.reloadData()
-            
-        }) { (error_code, message) in
-            
-        }
+        }, failure: nil)
+
     }
     
     /// 链式请求

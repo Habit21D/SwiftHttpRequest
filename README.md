@@ -6,6 +6,12 @@
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
+## Demo说明
+1.Moya文件夹中：MoyaBase是对Moya的封装。/Moya/MoyaBase/组建是可以不用更改的，当然，你也可以自定义组件
+2.MoyaConfig需要根据项目进行配置。每一项代码中都有明确的注释。
+3.HttpRequest需要自己重写跳转登录的代码，如果用不到可以删除或者将HttpCode.needLogin改为不可能用到的值
+4.MoyaAPI里是后台接口及model文件
+
 ----------
 * [更新说明](#version_explain)
     - [增加跨类型解析方式](#2.1update)

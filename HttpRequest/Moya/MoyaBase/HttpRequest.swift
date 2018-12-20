@@ -10,7 +10,7 @@ import Foundation
 import Moya
 import MBProgressHUD
 
-class HttpRequest {
+public class HttpRequest {
     /// 使用moya的请求封装
     ///
     /// - Parameters:
@@ -21,7 +21,7 @@ class HttpRequest {
     ///   - success: 成功的回调
     ///   - error: 连接服务器成功但是数据获取失败
     ///   - failure: 连接服务器失败
-    class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
+   public class func loadData<T: TargetType>(API: T.Type, target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         let provider = MoyaProvider<T>(plugins: [
             RequestHandlingPlugin()
             ])
@@ -46,17 +46,15 @@ class HttpRequest {
                 // ***********  这里可以统一处理状态码 ****
                 //从json中解析出status_code状态码和message，用于后面的处理
                 let decoder = JSONDecoder()
-                let baseModel = try? decoder.decode(TBaseModel.self, from: response.data)
+                let baseModel = try? decoder.decode(BaseModel.self, from: response.data)
                 guard let model = baseModel else {
-                    if let failureBlack = failure {
-                        failureBlack(nil, "数据解析失败")
-                    }
+                    failure?(nil, "数据解析失败")
                     return
                 }
                 
                 //状态码：后台会规定数据正确的状态码，未登录的状态码等，可以统一处理
-                switch (model.code) {
-                case NET_STATE_CODE_SUCCESS :
+                switch (model.generalCode) {
+                case HttpCode.success.rawValue :
                     //数据返回正确
                     if cache {
                         //缓存
@@ -64,16 +62,14 @@ class HttpRequest {
                     }
                     success(response.data)
                     break
-                case NET_STATE_CODE_LOGIN:
+                case HttpCode.needLogin.rawValue:
                     //请重新登录
-                    if let failureBlack = failure {
-                        failureBlack(model.data.stateCode ,model.data.message)
-                    }
-                    alertLogin(model.data.message)
+                    failure?(model.generalCode ,model.generalMessage)
+                    alertLogin(model.generalMessage)
                     break
                 default:
                     //其他错误
-                    failureHandle(failure: failure, stateCode: model.data.stateCode, message: model.data.message)
+                    failureHandle(failure: failure, stateCode: model.generalCode, message: model.generalMessage)
                     break
                 }
             // ********************
@@ -89,9 +85,7 @@ class HttpRequest {
         //错误处理 - 弹出错误信息
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
             TAlert.show(type: .error, text: message)
-            if let failureBlack = failure {
-                failureBlack(stateCode ,message)
-            }
+            failure?(stateCode ,message)
         }
         
         //登录弹窗 - 弹出是否需要登录的窗口

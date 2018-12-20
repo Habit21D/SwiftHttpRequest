@@ -48,6 +48,7 @@
 		0096C67041F28362B4A1E54A /* Pods_HttpRequest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HttpRequest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DD798257F4AE6A67BEE233A /* Pods-HttpRequest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HttpRequest.release.xcconfig"; path = "Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest.release.xcconfig"; sourceTree = "<group>"; };
 		AEA0F51821CB7A00005505F3 /* MoyaConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyaConfig.swift; sourceTree = "<group>"; };
+		AEA0F51D21CB9032005505F3 /* 说明.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "说明.md"; sourceTree = "<group>"; };
 		D3D5BB7A27D408B2C515AC20 /* Pods-HttpRequest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HttpRequest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest.debug.xcconfig"; sourceTree = "<group>"; };
 		E963E82A1FFF1C050047B134 /* HttpRequest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HttpRequest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E963E82D1FFF1C050047B134 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +139,7 @@
 		E963E8211FFF1C050047B134 = {
 			isa = PBXGroup;
 			children = (
+				AEA0F51D21CB9032005505F3 /* 说明.md */,
 				E963E82C1FFF1C050047B134 /* HttpRequest */,
 				E963E8411FFF1C050047B134 /* HttpRequestTests */,
 				E963E84C1FFF1C050047B134 /* HttpRequestUITests */,
@@ -195,6 +197,7 @@
 		E963E85C1FFF1C3F0047B134 /* Moya */ = {
 			isa = PBXGroup;
 			children = (
+				AEA0F51821CB7A00005505F3 /* MoyaConfig.swift */,
 				39A6AD71211AC1BC000779C2 /* MoyaAPI */,
 				E963E85F1FFF1C640047B134 /* MoyaBase */,
 			);
@@ -220,7 +223,6 @@
 		E963E85F1FFF1C640047B134 /* MoyaBase */ = {
 			isa = PBXGroup;
 			children = (
-				AEA0F51821CB7A00005505F3 /* MoyaConfig.swift */,
 				E97B50DF1FFF341D00D3E795 /* HttpRequest.swift */,
 				AEA0F51A21CB82A7005505F3 /* 组件 */,
 			);

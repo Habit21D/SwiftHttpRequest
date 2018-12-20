@@ -40,28 +40,24 @@ class NetworkTools {
                 do {
                     // ***********这里可以统一处理错误码，统一弹出错误 ****
                     let decoder = JSONDecoder()
-                    let baseModel = try? decoder.decode(TBaseModel.self, from: json)
+                    let baseModel = try? decoder.decode(BaseModel.self, from: json)
                     guard let model = baseModel else {
-                        if let failureBlack = failure {
-                            failureBlack(nil, "解析失败")
-                        }
+                        failure?(nil, "解析失败")
                         return
                     }
-                    switch (model.code) {
-                    case NET_STATE_CODE_SUCCESS :
+                    switch (model.generalCode) {
+                    case HttpCode.success.rawValue :
                         //数据返回正确
                         success(json)
                         break
-                    case NET_STATE_CODE_LOGIN:
+                    case HttpCode.needLogin.rawValue:
                         //请重新登录
-                        if let failureBlack = failure {
-                            failureBlack(model.data.stateCode ,model.data.message)
-                        }
-                        alertLogin(model.data.message)
+                        failure?(model.generalCode ,model.generalMessage)
+                        alertLogin(model.generalMessage)
                         break
                     default:
                         //其他错误
-                        failureHandle(failure: failure, stateCode: model.data.stateCode, message: model.data.message)
+                        failureHandle(failure: failure, stateCode: model.generalCode, message: model.generalMessage)
                         break
                     }
                 }
@@ -73,9 +69,7 @@ class NetworkTools {
         //错误处理 - 弹出错误信息
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
             TAlert.show(type: .error, text: message)
-            if let failureBlack = failure {
-                failureBlack(stateCode ,message)
-            }
+            failure?(stateCode ,message)
         }
         
         //登录弹窗 - 弹出是否需要登录的窗口
@@ -83,8 +77,6 @@ class NetworkTools {
             //TODO: 跳转到登录页的操作：
         }
     }
- 
-   
 }
 
 //二次封装

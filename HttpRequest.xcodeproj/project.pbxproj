@@ -198,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				AEA0F51821CB7A00005505F3 /* MoyaConfig.swift */,
-				39A6AD71211AC1BC000779C2 /* MoyaAPI */,
 				E963E85F1FFF1C640047B134 /* MoyaBase */,
+				39A6AD71211AC1BC000779C2 /* MoyaAPI */,
 			);
 			path = Moya;
 			sourceTree = "<group>";

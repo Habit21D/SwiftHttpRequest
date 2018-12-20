@@ -1,15 +1,13 @@
-# SwiftHttpRequest(Swift4)
+# SwiftHttpRequest(Swift4.2)
 ![](https://img.shields.io/badge/Swift-4.0-green.svg?style=flat)
 
 
-这里主要介绍了swift4版本的网络请求，封装中带有Progress及错误信息处理，缓存等的统一解决方案
+这里主要介绍了swift版本的网络请求，封装中带有Progress及错误信息处理，缓存等的统一解决方案
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
 
 ----------
-* [更新说明](#version_explain)
-    - [增加跨类型解析方式](#2.1update)
 * [Demo说明](#demo_explain)
     - [网络部分](#网络部分)
     - [Progress及信息处理](#Progress及信息处理)
@@ -22,20 +20,17 @@
 <h2 id="version_explain"> 更新说明：</h2>
 <h4 id="2.1update">version 2.1:</h4>
 
-`Codable`增加跨类型解析方式：感谢[hhfa008](https://github.com/hhfa008/NumberCodable)大神提供的方式
-
-*后台最常用的类型，也是最容易让我们出错的就是`Int`和`String`类型的不确定，
-这里提供了后台同一个字段返回类型`Int`和`String`不确定时的解析方式，
-可自行增加`Bool`类型等。*
-
 <h2 id="demo_explain"> Demo说明</h2>
 Demo主要介绍Swift的网络部分，代码已更新到swift4.2
-`
+
 1. Moya文件夹中：MoyaBase是对Moya的封装。/Moya/MoyaBase/组建是可以不用更改的，当然，你也可以自定义组件
-2. MoyaConfig需要根据项目进行配置。每一项代码中都有明确的注释。
-3. HttpRequest需要自己重写跳转登录的代码，如果用不到可以删除或者将HttpCode.needLogin改为不可能用到的值
+2. MoyaConfig.swift需要根据项目进行配置。每一项代码中都有明确的注释。
+3. HttpRequest.swift需要自己重写跳转登录的代码，如果用不到可以删除或者将HttpCode.needLogin改为不可能用到的值
 4. MoyaAPI里是后台接口及model文件
-`
+5. 后台最常用的类型，也是最容易让我们出错的就是`Int`和`String`类型的不确定，
+TStrInt.swift提供了后台同一个字段返回类型`Int`和`String`不确定时的解析方式，
+可自行增加`Bool`类型等。
+
 <h3 id="网络部分"> 一. 网络部分</h3>
 
 请求均采用 `Alamofire`

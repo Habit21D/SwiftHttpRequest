@@ -2,7 +2,7 @@
 //  DMAPI.swift
 //  HttpRequest
 //
-//  Created by 易金 on 2018/1/5.
+//  Created by jin on 2018/1/5.
 //  Copyright © 2018年 jin. All rights reserved.
 //  moya的一个具体的接口实现
 
@@ -19,9 +19,10 @@ enum  DMAPI {
 
 }
 
-// 补全HttpRequest.swift中没有处理的参数 
+// 补全【MoyaConfig 3：配置TargetType协议可以一次性处理的参数】中没有处理的参数
 extension DMAPI: TargetType {
-    
+    //1. 每个接口的相对路径
+    //请求时的绝对路径是   baseURL + path
     var path: String {
         switch self {
         case .rankList:
@@ -32,23 +33,31 @@ extension DMAPI: TargetType {
             return ""
         }
     }
-    
+
+    //2. 每个接口要使用的请求方式
+    var method: Moya.Method {
+        switch self {
+        case .rankList:
+            return .post
+        case .other1:
+            return .post
+        case .other2:
+            return .get
+        }
+    }
+
+    //3. Task是一个枚举值，根据后台需要的数据，选择不同的http task。
     var task: Task {
         var params: [String: Any] = [:]
-        
         switch self {
-        case let .rankList:
+        case .rankList:
             return .requestPlain
-
         case let .other1(param):
             params["param"] = param
-            
         default:
             //不需要传参数的接口走这里
             return .requestPlain
         }
-        
-        //Task是一个枚举值，根据后台需要的数据，选择不同的http task。
         return .requestParameters(parameters: params, encoding: URLEncoding.default)
     }
     

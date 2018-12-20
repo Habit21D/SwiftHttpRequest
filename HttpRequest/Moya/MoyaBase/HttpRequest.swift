@@ -10,19 +10,6 @@ import Foundation
 import Moya
 import MBProgressHUD
 
-///状态码 根据自家后台数据更改
-let NET_STATE_CODE_SUCCESS = 1
-let NET_STATE_CODE_LOGIN = 4000
-
-struct TBaseModel: Decodable {
-    var code: Int
-    var data: Data
-    struct Data: Decodable {
-        var stateCode: Int
-        var message: String
-    }
-}
-
 class HttpRequest {
     /// 使用moya的请求封装
     ///
@@ -113,62 +100,3 @@ class HttpRequest {
         }
     }
 }
-
-
-//TargetType协议可以一次性处理的参数
-//根据自己的需要更改，不能统一处理的移除下面的代码
-public extension TargetType {
-    var baseURL: URL {
-        return URL(string: "http://app.u17.com/v3/appV3_3/ios/phone/")!
-    }
-    
-    var headers: [String : String]? {
-        return nil
-    }
-    
-    var sampleData: Data {
-        return "{}".data(using: String.Encoding.utf8)!
-    }
-    
-    var method: Moya.Method {
-        return .post
-    }
-}
-
-// --- 公共参数 ----
-class RequestHandlingPlugin: PluginType {
-    
-    /// Called to modify a request before sending
-    public func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
-        var mutateableRequest = request
-        return mutateableRequest.appendCommonParams();
-    }
-}
-
-extension URLRequest {
-    
-    /// global common params
-    private var commonParams: [String: Any] {
-        //所有接口的公共参数添加在这里
-        return ["token": "",
-                "version": ""
-        ]
-    }
-    
-    mutating func appendCommonParams() -> URLRequest {
-        let request = try? encoded(parameters: commonParams, parameterEncoding: URLEncoding(destination: .queryString))
-        assert(request != nil, "append common params failed, please check common params value")
-        return request!
-    }
-    
-    func encoded(parameters: [String: Any], parameterEncoding: ParameterEncoding) throws -> URLRequest {
-        do {
-            return try parameterEncoding.encode(self, with: parameters)
-        } catch {
-            throw MoyaError.parameterEncoding(error)
-        }
-    }
-}
-
-// --- 公共参数end ----
-

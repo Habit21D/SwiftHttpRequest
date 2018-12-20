@@ -184,6 +184,8 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 ----
 <h2 id="版本"> 版本：</h2>
 
+### 2.2 修改文件结构。使用moya时请配置MoyaConfig和HttpRequest文件。这是一个demo，不是一个拿来即用的三方库，所以请认真阅读代码，根据自己的项目做出更改和优化
+
 ### 2.1 `Codable`跨类型解析：`Int`解析成`String`， `String`解析成`Int`
 
 ### 2.0 更新到swift4，重新整理代码

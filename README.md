@@ -6,11 +6,6 @@
 
 [简书地址https://www.jianshu.com/p/caa1a57e7423](https://www.jianshu.com/p/caa1a57e7423)
 
-## Demo说明
-1.Moya文件夹中：MoyaBase是对Moya的封装。/Moya/MoyaBase/组建是可以不用更改的，当然，你也可以自定义组件
-2.MoyaConfig需要根据项目进行配置。每一项代码中都有明确的注释。
-3.HttpRequest需要自己重写跳转登录的代码，如果用不到可以删除或者将HttpCode.needLogin改为不可能用到的值
-4.MoyaAPI里是后台接口及model文件
 
 ----------
 * [更新说明](#version_explain)
@@ -33,53 +28,14 @@
 这里提供了后台同一个字段返回类型`Int`和`String`不确定时的解析方式，
 可自行增加`Bool`类型等。*
 
-自定义解析类型如下,示例见demo
-```Swift
-///跨类型解析方式
-// 一个含有int，string的类，可用于解析后台返回类型不确定的字段。即：把int\string解析成TStrInt且解析后TStrInt的int和string都有值
-//----- 使用时如果报未初始化的错误，而且找不到原因时，可以尝试先修复model以外的错误，也许这个错误就会消失。。。。 这是编译器提示错误的原因
-struct TStrInt: Codable {
-    var int:Int {
-        didSet {
-            let stringValue = String(int)
-            if  stringValue != string {
-            string = stringValue
-            }
-        }
-    }
-
-    var string:String {
-        didSet {
-            if let intValue = Int(string), intValue != int {
-            int = intValue
-            }
-        }
-    }
-
-    init(from decoder: Decoder) throws {
-        let singleValueContainer = try decoder.singleValueContainer()
-
-        if let stringValue = try? singleValueContainer.decode(String.self)
-        {
-            string = stringValue
-            int = Int(stringValue) ?? 0
-
-        } else if let intValue = try? singleValueContainer.decode(Int.self)
-        {
-            int = intValue
-            string = String(intValue);
-        } else {
-            int = 0
-            string = ""
-        }
-    }
-}
-
-```
-
 <h2 id="demo_explain"> Demo说明</h2>
-Demo主要介绍Swift的网络部分，代码已更新到swift4
-
+Demo主要介绍Swift的网络部分，代码已更新到swift4.2
+`
+1. Moya文件夹中：MoyaBase是对Moya的封装。/Moya/MoyaBase/组建是可以不用更改的，当然，你也可以自定义组件
+2. MoyaConfig需要根据项目进行配置。每一项代码中都有明确的注释。
+3. HttpRequest需要自己重写跳转登录的代码，如果用不到可以删除或者将HttpCode.needLogin改为不可能用到的值
+4. MoyaAPI里是后台接口及model文件
+`
 <h3 id="网络部分"> 一. 网络部分</h3>
 
 请求均采用 `Alamofire`
@@ -128,54 +84,7 @@ Demo主要介绍Swift的网络部分，代码已更新到swift4
 <h2 id="接口说明"> 接口说明</h2>
 
 接口：http://app.u17.com/v3/appV3_3/ios/phone/rank/list
-
-返回实例：
-```JSON
-{
-    "code": 1,
-    "data": {
-        "stateCode": 1,
-        "message": "成功",
-        "returnData": {
-            "rankinglist": [
-                {
-                    "title": "月票",
-                    "subTitle": "来不及了快上车，老司机票选人气漫画，带你飞！",
-                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920243_f2kF1UculvH7.jpg",
-                    "argName": "sort",
-                    "argValue": "23",
-                    "rankingType": "月票值"
-                },
-                {
-                    "title": "点击",
-                    "subTitle": "厉害了我的大触，原来大家都在这里看漫画！？",
-                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920257_yznXvXJcrvk8.jpg",
-                    "argName": "sort",
-                    "argValue": "25",
-                    "rankingType": "点击值"
-                },
-                {
-                    "title": "吐槽",
-                    "subTitle": "不可描述的吐槽，画面太美，快来看看。",
-                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920418_vA222B8m6qi3.jpg",
-                    "argName": "sort",
-                    "argValue": "20",
-                    "rankingType": "吐槽值"
-                },
-                {
-                    "title": "新作",
-                    "subTitle": "拒绝身体被掏空，人气新作为你补补血。",
-                    "cover": "http://image.mylife.u17t.com/2016/12/28/1482920437_Cmg3we0vH3me.jpg",
-                    "argName": "topic",
-                    "argValue": "16",
-                    "rankingType": "新作值"
-                }
-            ]
-        }
-    }
-}
-```
-
+请求方式：get
 
 
 <h2> 作者语：</h2>

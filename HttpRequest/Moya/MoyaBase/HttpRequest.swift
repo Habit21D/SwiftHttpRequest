@@ -61,16 +61,13 @@ public class HttpRequest {
                         TSaveFiles.save(path: target.path, data: response.data)
                     }
                     success(response.data)
-                    break
                 case HttpCode.needLogin.rawValue:
                     //请重新登录
                     failure?(model.generalCode ,model.generalMessage)
                     alertLogin(model.generalMessage)
-                    break
                 default:
                     //其他错误
                     failureHandle(failure: failure, stateCode: model.generalCode, message: model.generalMessage)
-                    break
                 }
             // ********************
             case let .failure(error):

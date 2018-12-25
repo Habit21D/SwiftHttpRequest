@@ -49,16 +49,13 @@ class NetworkTools {
                     case HttpCode.success.rawValue :
                         //数据返回正确
                         success(json)
-                        break
                     case HttpCode.needLogin.rawValue:
                         //请重新登录
                         failure?(model.generalCode ,model.generalMessage)
                         alertLogin(model.generalMessage)
-                        break
                     default:
                         //其他错误
                         failureHandle(failure: failure, stateCode: model.generalCode, message: model.generalMessage)
-                        break
                     }
                 }
             case let .failure(error):

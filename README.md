@@ -10,7 +10,7 @@
  ---------
 
 <h3 id="demo_explain"> Demo说明</h3>
-Demo主要介绍Swift的网络部分，代码已更新到swift4.2
+Demo主要介绍Swift的网络部分，代码已更新到swift5.0
 
 **本demo内容可直接用于项目开发**
 
@@ -65,7 +65,7 @@ TStrInt.swift提供了后台同一个字段返回类型`Int`和`String`不确定
 ----
 <h5 id="版本"> 版本：</h5>
 
-*2.3 更新到Swift5
+* 2.3 更新到Swift5
 
 * 2.2 修改文件结构。使用moya时请配置MoyaConfig和HttpRequest文件。这是一个demo，不是一个拿来即用的三方库，所以请认真阅读代码，根据自己的项目做出更改和优化
 

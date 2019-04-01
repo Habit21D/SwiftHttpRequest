@@ -1,5 +1,6 @@
 # SwiftHttpRequest(Swift5)
-![](https://img.shields.io/badge/Swift-4.0-green.svg?style=flat)
+![](https://img.shields.io/badge/Swift-4.2-green.svg?style=flat)
+![](https://img.shields.io/badge/Swift-5.0-green.svg?style=flat)
 
 
 这里主要介绍了swift版本的网络请求，封装中带有Progress及错误信息处理，缓存等的统一解决方案

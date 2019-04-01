@@ -7,7 +7,7 @@ target 'HttpRequest' do
     #-- OC库
     pod 'MBProgressHUD'
     
-    #-- swift4.0
+    #-- swift5.0
     pod 'Moya'
     pod 'SnapKit'
     pod 'Kingfisher'

@@ -4,7 +4,7 @@
 //
 //  Created by Ethan Gill on 2017/11/28.
 //
-//  Copyright (c) 2017 Ethan Gill <ethan.gill@me.com>
+//  Copyright (c) 2018 Ethan Gill <ethan.gill@me.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -116,13 +116,13 @@ import UIKit
 public struct RenderingModeImageModifier: ImageModifier {
 
     /// The rendering mode to apply to the image.
-    public let renderingMode: UIImageRenderingMode
+    public let renderingMode: UIImage.RenderingMode
 
     /// Initialize a `RenderingModeImageModifier`
     ///
     /// - parameter renderingMode: The rendering mode to apply to the image.
     ///                            Default is .automatic
-    public init(renderingMode: UIImageRenderingMode = .automatic) {
+    public init(renderingMode: UIImage.RenderingMode = .automatic) {
         self.renderingMode = renderingMode
     }
 

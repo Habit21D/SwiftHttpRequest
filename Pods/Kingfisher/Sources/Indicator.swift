@@ -4,7 +4,7 @@
 //
 //  Created by João D. Moreira on 30/08/16.
 //
-//  Copyright (c) 2017 Wei Wang <onevcat@gmail.com>
+//  Copyright (c) 2018 Wei Wang <onevcat@gmail.com>
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -101,7 +101,7 @@ final class ActivityIndicator: Indicator {
 
     func startAnimatingView() {
         animatingCount += 1
-        // Alrady animating
+        // Already animating
         if animatingCount == 1 {
             #if os(macOS)
                 activityIndicatorView.startAnimation(nil)
@@ -131,11 +131,15 @@ final class ActivityIndicator: Indicator {
             activityIndicatorView.style = .spinning
         #else
             #if os(tvOS)
-                let indicatorStyle = UIActivityIndicatorViewStyle.white
+                let indicatorStyle = UIActivityIndicatorView.Style.white
             #else
-                let indicatorStyle = UIActivityIndicatorViewStyle.gray
+                let indicatorStyle = UIActivityIndicatorView.Style.gray
             #endif
-            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle:indicatorStyle)
+        #if swift(>=4.2)
+            activityIndicatorView = UIActivityIndicatorView(style: indicatorStyle)
+        #else
+            activityIndicatorView = UIActivityIndicatorView(activityIndicatorStyle: indicatorStyle)
+        #endif
             activityIndicatorView.autoresizingMask = [.flexibleLeftMargin, .flexibleRightMargin, .flexibleBottomMargin, .flexibleTopMargin]
         #endif
     }

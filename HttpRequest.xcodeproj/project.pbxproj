@@ -241,7 +241,6 @@
 				E963E8271FFF1C050047B134 /* Frameworks */,
 				E963E8281FFF1C050047B134 /* Resources */,
 				4C18BB2C8BF0A2FD5393C243 /* [CP] Embed Pods Frameworks */,
-				DE4DB40C730BCD2BD17AC8F1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -386,7 +385,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-HttpRequest/Pods-HttpRequest-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -405,22 +404,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE4DB40C730BCD2BD17AC8F1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HttpRequest/Pods-HttpRequest-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-HttpRequest/Pods-HttpRequest-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

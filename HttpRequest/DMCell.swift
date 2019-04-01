@@ -1,10 +1,3 @@
-//
-//  DMCell.swift
-//  HttpRequest
-//
-//  Created by 易金 on 2018/1/5.
-//  Copyright © 2018年 jin. All rights reserved.
-//  多米音乐用来展示的cell
 
 import UIKit
 import SnapKit
@@ -28,7 +21,7 @@ class DMCell: UITableViewCell {
         descLabel.numberOfLines = 0
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         UISet()
         self.contentView.addSubview(iconImageView)

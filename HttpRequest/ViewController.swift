@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  HttpRequest
-//
-//  Created by jin on 2018/1/5.
-//  Copyright © 2018年 jin. All rights reserved.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -26,7 +18,7 @@ class ViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let table = UITableView(frame: CGRect(x:0, y: 100, width: self.view.frame.width, height: self.view.frame.height - 100), style: .plain)
-        table.rowHeight = UITableViewAutomaticDimension
+        table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 120
         
         table.delegate = self

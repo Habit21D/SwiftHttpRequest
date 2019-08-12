@@ -27,7 +27,7 @@ class TSaveFiles {
         if let url = getPath(path: path) {
             do {
                 try data.write(to: url)
-                print("保存到本地\(url)")
+                print("保存成功")
             } catch {
                 print("保存到本地文件失败")
             }

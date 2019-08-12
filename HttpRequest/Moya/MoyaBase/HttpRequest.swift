@@ -11,6 +11,17 @@ import Moya
 import MBProgressHUD
 
 public class HttpRequest {
+    static let networkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: false, requestDataFormatter: { data -> String in
+        return String(data: data, encoding: .utf8) ?? ""
+    }) { data -> (Data) in
+        do {
+            let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+            let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+            return prettyData
+        } catch {
+            return data
+        }
+    }
     /// 使用moya的请求封装
     ///
     /// - Parameters:
@@ -20,11 +31,11 @@ public class HttpRequest {
     ///   - success: 成功的回调
     ///   - error: 连接服务器成功但是数据获取失败
     ///   - failure: 连接服务器失败
-   public class func loadData<T: TargetType>(target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
+    public class func loadData<T: TargetType>(target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         let provider = MoyaProvider<T>(plugins: [
-            RequestHandlingPlugin()
+            RequestHandlingPlugin(),
+            networkLoggerPlugin
             ])
-        
         //如果需要读取缓存，则优先读取缓存内容
         if cache, let data = TSaveFiles.read(path: target.path) {
             //cacheHandle不为nil则使用cacheHandle处理缓存，否则使用success处理

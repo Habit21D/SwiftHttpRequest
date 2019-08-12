@@ -11,17 +11,6 @@ import Moya
 import MBProgressHUD
 
 public class HttpRequest {
-    static let networkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: false, requestDataFormatter: { data -> String in
-        return String(data: data, encoding: .utf8) ?? ""
-    }) { data -> (Data) in
-        do {
-            let dataAsJSON = try JSONSerialization.jsonObject(with: data)
-            let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
-            return prettyData
-        } catch {
-            return data
-        }
-    }
     /// 使用moya的请求封装
     ///
     /// - Parameters:
@@ -98,6 +87,18 @@ public class HttpRequest {
         //登录弹窗 - 弹出是否需要登录的窗口
         func alertLogin(_ title: String?) {
             //TODO: 跳转到登录页的操作：
+        }
+    }
+
+    static let networkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: false, requestDataFormatter: { data -> String in
+        return String(data: data, encoding: .utf8) ?? ""
+    }) { data -> (Data) in
+        do {
+            let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+            let prettyData =  try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+            return prettyData
+        } catch {
+            return data
         }
     }
 }

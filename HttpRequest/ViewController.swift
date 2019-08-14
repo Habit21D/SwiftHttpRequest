@@ -18,8 +18,8 @@ class ViewController: UIViewController {
     
     lazy var tableView: UITableView = {
         let table = UITableView(frame: CGRect(x:0, y: 100, width: self.view.frame.width, height: self.view.frame.height - 100), style: .plain)
-        table.rowHeight = UITableView.automaticDimension
-        table.estimatedRowHeight = 120
+        table.rowHeight = 120
+
         
         table.delegate = self
         table.dataSource = self

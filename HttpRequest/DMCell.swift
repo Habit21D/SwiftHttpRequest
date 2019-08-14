@@ -50,7 +50,6 @@ class DMCell: UITableViewCell {
             maker.left.top.equalToSuperview().offset(10)
             maker.bottom.equalToSuperview().offset(-10)
             maker.width.equalTo(130)
-            maker.height.equalTo(100)
         }
         
         nameLabel.snp.makeConstraints { (maker) in

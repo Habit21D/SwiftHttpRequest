@@ -1,9 +1,3 @@
-//
-//  HttpRequest.swift
-//  JSONToModel
-//
-//  Created by jin on 2017/12/15.
-//  Copyright © 2017年 jin. All rights reserved.
 //  moya封装
 
 import Foundation

@@ -1,9 +1,3 @@
-//
-//  YJSaveFiles.swift
-//  yjzx2017
-//
-//  Created by jin on 2017/12/27.
-//  Copyright © 2017年 yjzx2017. All rights reserved.
 //  文件保存
 
 import Foundation

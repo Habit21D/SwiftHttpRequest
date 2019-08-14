@@ -1,9 +1,3 @@
-//
-//  JRequets.swift
-//  YJRequest
-//
-//  Created by JIN on 2017/6/23.
-//  Copyright © 2017年 jin. All rights reserved.
 //  网络层封装
 
 import Foundation

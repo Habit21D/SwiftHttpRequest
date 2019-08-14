@@ -1,9 +1,3 @@
-//
-//  DMAPI.swift
-//  HttpRequest
-//
-//  Created by jin on 2018/1/5.
-//  Copyright © 2018年 jin. All rights reserved.
 //  moya的一个具体的接口实现
 
 import Foundation

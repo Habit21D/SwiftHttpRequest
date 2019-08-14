@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  HttpRequest
-//
-//  Created by jin on 2018/1/5.
-//  Copyright © 2018年 jin. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain

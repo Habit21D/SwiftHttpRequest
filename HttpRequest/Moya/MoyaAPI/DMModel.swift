@@ -1,9 +1,3 @@
-//
-//  DMModel.swift
-//  HttpRequest
-//
-//  Created by 易金 on 2018/1/5.
-//  Copyright © 2018年 jin. All rights reserved.
 //  rankList的model
 
 import Foundation

@@ -9,20 +9,20 @@ public class HttpRequest {
     ///
     /// - Parameters:
     ///   - target: TargetType里的枚举值
-    ///   -cache: 是否缓存
-    ///   -cacheHandle: 需要单独处理缓存的数据时使用，（默认为空，使用success处理缓存数据）
+    ///   -needCache: 是否缓存
+    ///   -cache: 需要单独处理缓存的数据时使用，（默认为空，使用success处理缓存数据）
     ///   - success: 成功的回调
     ///   - error: 连接服务器成功但是数据获取失败
     ///   - failure: 连接服务器失败
-    public class func loadData<T: TargetType>(target: T, cache: Bool = false, cacheHandle: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
+    public class func loadData<T: TargetType>(target: T, needCache: Bool = false, cache: ((Data) -> Void)? = nil, success: @escaping((Data) -> Void), failure: ((Int?, String) ->Void)? ) {
         let provider = MoyaProvider<T>(plugins: [
             RequestHandlingPlugin(),
             networkLoggerPlugin
             ])
         //如果需要读取缓存，则优先读取缓存内容
-        if cache, let data = SaveFiles.read(path: target.path) {
-            //cacheHandle不为nil则使用cacheHandle处理缓存，否则使用success处理
-            if let block = cacheHandle {
+        if needCache, let data = SaveFiles.read(path: target.path) {
+            //cache不为nil则使用cache处理缓存，否则使用success处理
+            if let block = cache {
                 block(data)
             }else {
                 success(data)
@@ -52,7 +52,7 @@ public class HttpRequest {
                 switch (model.generalCode) {
                 case HttpCode.success.rawValue :
                     //数据返回正确
-                    if cache {
+                    if needCache {
                         //缓存
                         SaveFiles.save(path: target.path, data: response.data)
                     }

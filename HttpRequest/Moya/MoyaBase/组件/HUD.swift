@@ -1,5 +1,5 @@
 //
-//  THUD.swift
+//  HUD.swift
 //  HttpRequest
 //
 //  Created by jin on 2018/1/5.
@@ -8,7 +8,7 @@
 import MBProgressHUD
 import Foundation
 
-class TAlert: NSObject {
+class Alert: NSObject {
     enum AlertType {
         case success
         case info
@@ -39,7 +39,7 @@ class TAlert: NSObject {
     }
 }
 
-class TProgressHUD {
+class ProgressHUD {
     class func show() {
         if let window = UIApplication.shared.delegate?.window {
             MBProgressHUD.showAdded(to: window!, animated: true)

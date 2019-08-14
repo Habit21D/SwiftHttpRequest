@@ -29,9 +29,9 @@ class NetworkTools {
         // 1.获取类型
         let method = type == .get ? HTTPMethod.get : HTTPMethod.post
         // 2.发送网络请求
-        TProgressHUD.show()
+        ProgressHUD.show()
          Alamofire.request(url, method: method, parameters: params).responseData { (response) in
-            TProgressHUD.hide()
+            ProgressHUD.hide()
             guard let json = response.data else {
                 return
             }
@@ -65,7 +65,7 @@ class NetworkTools {
         
         //错误处理 - 弹出错误信息
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
-            TAlert.show(type: .error, text: message)
+            Alert.show(type: .error, text: message)
             failure?(stateCode ,message)
         }
         

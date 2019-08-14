@@ -72,7 +72,7 @@ extension NetworkKit{
         
         //发起请求
         if let URLString = url {
-            TProgressHUD.show()
+            ProgressHUD.show()
             let method = requestType == .get ? HTTPMethod.get : HTTPMethod.post
             dataRequest =  Alamofire.request(URLString, method: method, parameters: params)
             httpRequest = dataRequest
@@ -80,7 +80,7 @@ extension NetworkKit{
         
         dataRequest?.responseData {
             (response) in
-            TProgressHUD.hide()
+            ProgressHUD.hide()
             guard let json = response.data else {
                 return
             }
@@ -117,7 +117,7 @@ extension NetworkKit{
         
         //错误处理 - 弹出错误信息
         func failureHandle(failure: FailureHandlerType? , stateCode: Int?, message: String) {
-            TAlert.show(type: .error, text: message)
+            Alert.show(type: .error, text: message)
             failure?(stateCode ,message)
         }
         

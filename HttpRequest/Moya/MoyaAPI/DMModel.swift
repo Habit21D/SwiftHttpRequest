@@ -9,11 +9,11 @@
 import Foundation
 
 struct DMModel: Codable {
-    var code: TStrInt
+    var code: StrInt
     var data: DMData
     
     struct DMData: Codable {
-        var stateCode: TStrInt
+        var stateCode: StrInt
         var message: String
         var returnData: DMReturnData?
     }
@@ -27,7 +27,7 @@ struct DMModel: Codable {
         var subTitle: String
         var cover: String
         var argName: String
-        var argValue: TStrInt
+        var argValue: StrInt
         var rankingType: String
     }
 }

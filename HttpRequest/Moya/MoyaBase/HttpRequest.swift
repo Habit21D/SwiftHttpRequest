@@ -26,7 +26,7 @@ public class HttpRequest {
             networkLoggerPlugin
             ])
         //如果需要读取缓存，则优先读取缓存内容
-        if cache, let data = TSaveFiles.read(path: target.path) {
+        if cache, let data = SaveFiles.read(path: target.path) {
             //cacheHandle不为nil则使用cacheHandle处理缓存，否则使用success处理
             if let block = cacheHandle {
                 block(data)
@@ -35,11 +35,11 @@ public class HttpRequest {
             }
         }else {
             //读取缓存速度较快，无需显示hud；仅从网络加载数据时，显示hud。
-            TProgressHUD.show()
+            ProgressHUD.show()
         }
         
         provider.request(target) { result in
-            TProgressHUD.hide()
+            ProgressHUD.hide()
             switch result {
             case let .success(response):
                 // ***********  这里可以统一处理状态码 ****
@@ -57,7 +57,7 @@ public class HttpRequest {
                     //数据返回正确
                     if cache {
                         //缓存
-                        TSaveFiles.save(path: target.path, data: response.data)
+                        SaveFiles.save(path: target.path, data: response.data)
                     }
                     success(response.data)
                 case HttpCode.needLogin.rawValue:
@@ -80,7 +80,7 @@ public class HttpRequest {
         
         //错误处理 - 弹出错误信息
         func failureHandle(failure: ((Int?, String) ->Void)? , stateCode: Int?, message: String) {
-            TAlert.show(type: .error, text: message)
+            Alert.show(type: .error, text: message)
             failure?(stateCode ,message)
         }
         

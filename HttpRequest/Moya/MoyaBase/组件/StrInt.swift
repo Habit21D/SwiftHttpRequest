@@ -1,5 +1,5 @@
 //
-//  TStrInt.swift
+//  StrInt.swift
 //  HttpRequest
 //
 //  Created by 易金 on 2018/1/23.
@@ -10,7 +10,7 @@ import Foundation
 ///跨类型解析方式
 // 一个含有int，string的类，可用于解析后台返回类型不确定的字段。即：把int\string解析成TStrInt且解析后TStrInt的int和string都有值
 //----- 使用时如果报未初始化的错误，而且找不到原因时，可以尝试先修复model以外的错误，也许这个错误就会消失。。。。 这是编译器提示错误的原因
-struct TStrInt: Codable {
+struct StrInt: Codable {
     var int:Int {
         didSet {
             let stringValue = String(int)

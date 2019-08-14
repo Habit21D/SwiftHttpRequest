@@ -19,12 +19,12 @@
 		E963E8611FFF1C830047B134 /* JRequets.swift in Sources */ = {isa = PBXBuildFile; fileRef = E963E8601FFF1C830047B134 /* JRequets.swift */; };
 		E963E8631FFF1C8C0047B134 /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = E963E8621FFF1C8C0047B134 /* NetworkTools.swift */; };
 		E97B50E01FFF341D00D3E795 /* HttpRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50DF1FFF341D00D3E795 /* HttpRequest.swift */; };
-		E97B50E31FFF356200D3E795 /* THUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50E21FFF356200D3E795 /* THUD.swift */; };
-		E97B50E51FFF35E400D3E795 /* TSaveFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50E41FFF35E400D3E795 /* TSaveFiles.swift */; };
+		E97B50E31FFF356200D3E795 /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50E21FFF356200D3E795 /* HUD.swift */; };
+		E97B50E51FFF35E400D3E795 /* SaveFiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50E41FFF35E400D3E795 /* SaveFiles.swift */; };
 		E97B50E81FFF491700D3E795 /* DMAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50E71FFF491700D3E795 /* DMAPI.swift */; };
 		E97B50EB1FFF4A7E00D3E795 /* DMModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50EA1FFF4A7E00D3E795 /* DMModel.swift */; };
 		E97B50EF1FFF56BA00D3E795 /* DMCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97B50EE1FFF56B900D3E795 /* DMCell.swift */; };
-		E9BA184420171FF9004B4DE5 /* TStrInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA184320171FF9004B4DE5 /* TStrInt.swift */; };
+		E9BA184420171FF9004B4DE5 /* StrInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9BA184320171FF9004B4DE5 /* StrInt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,12 +66,12 @@
 		E963E8601FFF1C830047B134 /* JRequets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JRequets.swift; sourceTree = "<group>"; };
 		E963E8621FFF1C8C0047B134 /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		E97B50DF1FFF341D00D3E795 /* HttpRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpRequest.swift; sourceTree = "<group>"; };
-		E97B50E21FFF356200D3E795 /* THUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THUD.swift; sourceTree = "<group>"; };
-		E97B50E41FFF35E400D3E795 /* TSaveFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TSaveFiles.swift; sourceTree = "<group>"; };
+		E97B50E21FFF356200D3E795 /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		E97B50E41FFF35E400D3E795 /* SaveFiles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SaveFiles.swift; sourceTree = "<group>"; };
 		E97B50E71FFF491700D3E795 /* DMAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMAPI.swift; sourceTree = "<group>"; };
 		E97B50EA1FFF4A7E00D3E795 /* DMModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DMModel.swift; sourceTree = "<group>"; };
 		E97B50EE1FFF56B900D3E795 /* DMCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DMCell.swift; sourceTree = "<group>"; };
-		E9BA184320171FF9004B4DE5 /* TStrInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TStrInt.swift; sourceTree = "<group>"; };
+		E9BA184320171FF9004B4DE5 /* StrInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrInt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,9 +129,9 @@
 		AEA0F51A21CB82A7005505F3 /* 组件 */ = {
 			isa = PBXGroup;
 			children = (
-				E9BA184320171FF9004B4DE5 /* TStrInt.swift */,
-				E97B50E41FFF35E400D3E795 /* TSaveFiles.swift */,
-				E97B50E21FFF356200D3E795 /* THUD.swift */,
+				E9BA184320171FF9004B4DE5 /* StrInt.swift */,
+				E97B50E41FFF35E400D3E795 /* SaveFiles.swift */,
+				E97B50E21FFF356200D3E795 /* HUD.swift */,
 			);
 			path = "组件";
 			sourceTree = "<group>";
@@ -414,7 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E97B50E51FFF35E400D3E795 /* TSaveFiles.swift in Sources */,
+				E97B50E51FFF35E400D3E795 /* SaveFiles.swift in Sources */,
 				E97B50E81FFF491700D3E795 /* DMAPI.swift in Sources */,
 				E97B50EB1FFF4A7E00D3E795 /* DMModel.swift in Sources */,
 				AEA0F51921CB7A00005505F3 /* MoyaConfig.swift in Sources */,
@@ -422,9 +422,9 @@
 				E963E8301FFF1C050047B134 /* ViewController.swift in Sources */,
 				E97B50E01FFF341D00D3E795 /* HttpRequest.swift in Sources */,
 				E963E8611FFF1C830047B134 /* JRequets.swift in Sources */,
-				E97B50E31FFF356200D3E795 /* THUD.swift in Sources */,
+				E97B50E31FFF356200D3E795 /* HUD.swift in Sources */,
 				E97B50EF1FFF56BA00D3E795 /* DMCell.swift in Sources */,
-				E9BA184420171FF9004B4DE5 /* TStrInt.swift in Sources */,
+				E9BA184420171FF9004B4DE5 /* StrInt.swift in Sources */,
 				E963E82E1FFF1C050047B134 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

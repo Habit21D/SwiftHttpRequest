@@ -8,7 +8,7 @@
 
 import Foundation
 
-class TSaveFiles {
+class SaveFiles {
 
     static let systemCache: URL? = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first?.appendingPathComponent("netCache", isDirectory: true)
 

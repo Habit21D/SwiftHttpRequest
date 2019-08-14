@@ -38,8 +38,7 @@ public class HttpRequest {
             case let .success(response):
                 // ***********  这里可以统一处理状态码 ****
                 //从json中解析出status_code状态码和message，用于后面的处理
-                let decoder = JSONDecoder()
-                guard let model = try? decoder.decode(BaseModel.self, from: response.data) else {
+                guard let model = try? JSONDecoder().decode(BaseModel.self, from: response.data) else {
                     //解析出错后，直接返回data
                     if response.statusCode == 200 {
                         success(response.data)

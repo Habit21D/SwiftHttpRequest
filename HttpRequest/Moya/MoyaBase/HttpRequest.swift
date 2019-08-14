@@ -45,13 +45,17 @@ public class HttpRequest {
                 // ***********  这里可以统一处理状态码 ****
                 //从json中解析出status_code状态码和message，用于后面的处理
                 let decoder = JSONDecoder()
-                let baseModel = try? decoder.decode(BaseModel.self, from: response.data)
-                guard let model = baseModel else {
-                    failure?(nil, "数据解析失败")
+                guard let model = try? decoder.decode(BaseModel.self, from: response.data) else {
+                    //解析出错后，直接返回data
+                    if response.statusCode == 200 {
+                        success(response.data)
+                    } else {
+                         failure?(response.statusCode, "\(response.statusCode)")
+                    }
                     return
                 }
                 
-                //状态码：后台会规定数据正确的状态码，未登录的状态码等，可以统一处理
+                //状态码：后台会规定数据正确的状态码，未登录的状态码等，可以统一处理。
                 switch (model.generalCode) {
                 case HttpCode.success.rawValue :
                     //数据返回正确
@@ -70,8 +74,6 @@ public class HttpRequest {
                 }
             // ********************
             case let .failure(error):
-                //请求数据失败，可能是404（无法找到指定位置的资源），408（请求超时）等错误
-                //可百度查找“http状态码”
                 let statusCode = error.response?.statusCode ?? 0
                 let errorCode = "请求出错，错误码：" + String(statusCode)
                 failureHandle(failure: failure, stateCode: statusCode, message: error.errorDescription ?? errorCode)

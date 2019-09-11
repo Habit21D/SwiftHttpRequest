@@ -32,7 +32,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         self.view.addSubview(segment)
         self.view.addSubview(tableView)
-        loadDataByMoay()
+        loadDataByMoya()
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +61,7 @@ extension ViewController {
     @objc func clickSegment() {
         switch segment.selectedSegmentIndex {
         case 0:
-            loadDataByMoay()
+            loadDataByMoya()
         case 1:
             loadDataByChain()
         case 2:
@@ -72,7 +72,7 @@ extension ViewController {
     }
     
     /// moya请求
-    func loadDataByMoay() {
+    func loadDataByMoya() {
         HttpRequest.loadData(target: DMAPI.rankList, needCache: true, success: { (json) in
             let decoder = JSONDecoder()
             let model = try? decoder.decode(DMModel.self, from: json)

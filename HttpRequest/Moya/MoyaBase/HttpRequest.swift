@@ -85,7 +85,7 @@ public class HttpRequest {
         }
     }
 
-    static let networkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: false, requestDataFormatter: { data -> String in
+    static let networkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: true, requestDataFormatter: { data -> String in
         return String(data: data, encoding: .utf8) ?? ""
     }) { data -> (Data) in
         do {

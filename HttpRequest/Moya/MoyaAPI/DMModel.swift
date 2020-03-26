@@ -3,11 +3,10 @@
 import Foundation
 
 struct DMModel: Codable {
-    var code: StrInt
+    var code: Int
     var data: DMData
-    
     struct DMData: Codable {
-        var stateCode: StrInt
+        var stateCode: Int
         var message: String
         var returnData: DMReturnData?
     }
@@ -21,7 +20,7 @@ struct DMModel: Codable {
         var subTitle: String
         var cover: String
         var argName: String
-        var argValue: StrInt
+        var argValue: Int
         var rankingType: String
     }
 }

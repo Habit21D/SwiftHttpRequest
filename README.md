@@ -18,9 +18,8 @@ Demo主要介绍Swift的网络部分，代码已更新到swift5.0
 2. MoyaConfig.swift需要根据项目进行配置。每一项代码中都有明确的注释。
 3. HttpRequest.swift需要自己重写跳转登录的代码，如果用不到可以删除或者将HttpCode.needLogin改为不可能用到的值
 4. MoyaAPI里是后台接口及model文件
-5. 后台最常用的类型，也是最容易让我们出错的就是`Int`和`String`类型的不确定，
-TStrInt.swift提供了后台同一个字段返回类型`Int`和`String`不确定时的解析方式，
-可自行增加`Bool`类型等。
+5. 提供跨类型解析方案，提供codable默认值解决方案
+
 
 <h5 id="网络部分"> 一. 网络部分</h5>
 

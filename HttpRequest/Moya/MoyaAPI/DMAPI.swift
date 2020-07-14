@@ -8,7 +8,7 @@ enum  DMAPI {
     case rankList
     
     ///其他接口...
-    case other1(param: String)
+    case other1(p1: String, p2: Int, p3: String, p4: String)
     case other2
 
 }
@@ -21,8 +21,8 @@ extension DMAPI: TargetType {
         switch self {
         case .rankList:
             return "rank/list"
-        case .other1:
-            return ""
+        case let .other1(p1, p2, _, _):
+            return "rank/list?pid=\(p1)&page=\(p2)"
         case .other2:
             return ""
         }
@@ -46,8 +46,9 @@ extension DMAPI: TargetType {
         switch self {
         case .rankList:
             return .requestPlain
-        case let .other1(param):
-            params["param"] = param
+        case let .other1(_, _, p3, p4):
+            params["p3"] = p3
+            params["p4"] = p4
         default:
             //不需要传参数的接口走这里
             return .requestPlain

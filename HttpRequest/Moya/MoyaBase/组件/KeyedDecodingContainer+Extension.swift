@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 ///当json数据某个值为空时，给予默认值
 public extension KeyedDecodingContainer {
     
@@ -16,6 +17,10 @@ public extension KeyedDecodingContainer {
     
     func decode(_ type: Float.Type, forKey key: KeyedDecodingContainer.Key) throws -> Float {
         return try decodeIfPresent(type, forKey: key) ?? 0.0
+    }
+    
+    func decode(_ type: CGFloat.Type, forKey key: KeyedDecodingContainer.Key) throws -> CGFloat {
+        return CGFloat(try decodeIfPresent(CGFloat.NativeType.self, forKey: key) ?? 0.0)
     }
     
     func decode(_ type: Int.Type, forKey key: KeyedDecodingContainer.Key) throws -> Int {

@@ -72,11 +72,10 @@ extension ViewController {
     
     /// moya请求
     func loadDataByMoya() {
-        HttpRequest.loadData(target: DMAPI.rankList, needCache: false, success: { (json) in
-            let decoder = JSONDecoder()
-            let model = try? decoder.decode(DMModel.self, from: json)
+        HttpRequest.loadData(target: DMAPI.rankList, model: DMModel.self, success: { model in
             self.model = model
             self.tableView.reloadData()
+            
         }, failure: nil)
 
     }

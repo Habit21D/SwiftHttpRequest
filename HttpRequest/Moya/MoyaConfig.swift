@@ -3,40 +3,7 @@ import Moya
 
 #warning("下面的代码需要根据项目进行更改")
 /**
- 1.状态码 根据自家后台数据更改
-
- - Todo: 根据自己的需要更改
- **/
-enum HttpCode : Int {
-    case success = 1 //请求成功的状态吗
-    case needLogin = -1  // 返回需要登录的错误码
-}
-
-/**
- 2.为了统一处理错误码和错误信息，在请求回调里会用这个model尝试解析返回值
- - Todo: 根据自家后台更改。
- **/
-struct BaseModel: Decodable {
-    var code: Int
-    var data: Content
-    struct Content: Decodable {
-        var message: String
-    }
-}
-
-//下面的错误码及错误信息用来在HttpRequest中使用
-extension BaseModel {
-    var generalCode: Int {
-        return code
-    }
-
-    var generalMessage: String {
-        return data.message
-    }
-}
-
-/**
- 3.配置TargetType协议可以一次性处理的参数
+ 1.配置TargetType协议可以一次性处理的参数
 
  - Todo: 根据自己的需要更改，不能统一处理的移除下面的代码，并在DMAPI中实现
 
@@ -56,7 +23,7 @@ public extension TargetType {
 }
 
 /**
- 4.公共参数
+ 2.公共参数
 
  - Todo: 配置公共参数，例如所有接口都需要传token，version，time等，就可以在这里统一处理
 

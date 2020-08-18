@@ -9,6 +9,7 @@ enum  DMAPI {
     
     ///其他接口...
     case other1(p1: String, p2: Int, p3: String, p4: String)
+    
     case other2
 
 }

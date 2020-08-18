@@ -1,7 +1,6 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     var model: DMModel?
     //请求参数
     

@@ -100,15 +100,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		39A6AD71211AC1BC000779C2 /* MoyaAPI */ = {
-			isa = PBXGroup;
-			children = (
-				E97B50E71FFF491700D3E795 /* DMAPI.swift */,
-				E97B50EA1FFF4A7E00D3E795 /* DMModel.swift */,
-			);
-			path = MoyaAPI;
-			sourceTree = "<group>";
-		};
 		8F4B403030B7E47C3356E6D2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -126,14 +117,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		AEA0F51A21CB82A7005505F3 /* 组件 */ = {
+		AEA0F51A21CB82A7005505F3 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				FBB7C96A242CB6A9009190F0 /* KeyedDecodingContainer+Extension.swift */,
 				E97B50E41FFF35E400D3E795 /* SaveFiles.swift */,
 				E97B50E21FFF356200D3E795 /* HUD.swift */,
 			);
-			path = "组件";
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		E963E8211FFF1C050047B134 = {
@@ -165,6 +156,9 @@
 				E963E82D1FFF1C050047B134 /* AppDelegate.swift */,
 				E963E82F1FFF1C050047B134 /* ViewController.swift */,
 				E97B50EE1FFF56B900D3E795 /* DMCell.swift */,
+				E97B50E71FFF491700D3E795 /* DMAPI.swift */,
+				E97B50EA1FFF4A7E00D3E795 /* DMModel.swift */,
+				AEA0F51A21CB82A7005505F3 /* Utils */,
 				E963E85D1FFF1C4B0047B134 /* 类似AFN的封装 */,
 				E963E85E1FFF1C570047B134 /* 链式网络请求 */,
 				E963E85C1FFF1C3F0047B134 /* Moya */,
@@ -198,8 +192,7 @@
 			isa = PBXGroup;
 			children = (
 				AEA0F51821CB7A00005505F3 /* MoyaConfig.swift */,
-				E963E85F1FFF1C640047B134 /* MoyaBase */,
-				39A6AD71211AC1BC000779C2 /* MoyaAPI */,
+				E97B50DF1FFF341D00D3E795 /* HttpRequest.swift */,
 			);
 			path = Moya;
 			sourceTree = "<group>";
@@ -218,15 +211,6 @@
 				E963E8601FFF1C830047B134 /* JRequets.swift */,
 			);
 			path = "链式网络请求";
-			sourceTree = "<group>";
-		};
-		E963E85F1FFF1C640047B134 /* MoyaBase */ = {
-			isa = PBXGroup;
-			children = (
-				E97B50DF1FFF341D00D3E795 /* HttpRequest.swift */,
-				AEA0F51A21CB82A7005505F3 /* 组件 */,
-			);
-			path = MoyaBase;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -49,6 +49,7 @@ public class HttpRequest {
         
     }
 
+    ///打印日志
     static let networkLoggerPlugin = NetworkLoggerPlugin(verbose: true, cURL: true, requestDataFormatter: { data -> String in
         return String(data: data, encoding: .utf8) ?? ""
     }) { data -> (Data) in

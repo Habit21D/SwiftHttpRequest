@@ -1,8 +1,6 @@
-import Foundation
-import UIKit
 ///当json数据某个值为空时，给予默认值
 public extension KeyedDecodingContainer {
-    
+
     func decode(_ type: Bool.Type, forKey key: KeyedDecodingContainer.Key) throws -> Bool {
         return try decodeIfPresent(type, forKey: key) ?? false
     }
@@ -18,11 +16,11 @@ public extension KeyedDecodingContainer {
     func decode(_ type: Float.Type, forKey key: KeyedDecodingContainer.Key) throws -> Float {
         return try decodeIfPresent(type, forKey: key) ?? 0.0
     }
-    
+
     func decode(_ type: CGFloat.Type, forKey key: KeyedDecodingContainer.Key) throws -> CGFloat {
         return CGFloat(try decodeIfPresent(CGFloat.NativeType.self, forKey: key) ?? 0.0)
     }
-    
+
     func decode(_ type: Int.Type, forKey key: KeyedDecodingContainer.Key) throws -> Int {
         return try decodeIfPresent(type, forKey: key) ?? 0
     }
@@ -31,7 +29,7 @@ public extension KeyedDecodingContainer {
         return try decodeIfPresent(type, forKey: key) ?? 0
     }
     
-    func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer.Key) throws -> T where T : Decodable {
+    func decode<T>(_ type: T.Type, forKey key: KeyedDecodingContainer.Key) throws -> T where T: Decodable {
         
         if let value = try decodeIfPresent(type, forKey: key) {
             return value
@@ -50,7 +48,16 @@ public extension KeyedDecodingContainer {
         
         let decoder = try superDecoder(forKey: key)
         let container = try decoder.singleValueContainer()
-        return try? container.decode(type)
+        if let value = try? container.decode(type) {
+            return value
+        } else if let intValue = try? container.decode(Int.self) {
+            return intValue == 1
+        } else if let doubleValue = try? container.decode(Double.self) {
+            return doubleValue == 1
+        } else if let stringValue = try? container.decode(String.self) {
+            return stringValue == "1"
+        }
+        return nil
     }
     
     func decodeIfPresent(_ type: String.Type, forKey key: K) throws -> String? {
@@ -102,7 +109,6 @@ public extension KeyedDecodingContainer {
     }
     
     func decodeIfPresent(_ type: Int.Type, forKey key: K) throws -> Int? {
-        
         guard contains(key) else { return nil }
         
         let decoder = try superDecoder(forKey: key)
@@ -131,7 +137,7 @@ public extension KeyedDecodingContainer {
         return nil
     }
     
-    func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T : Decodable {
+    func decodeIfPresent<T>(_ type: T.Type, forKey key: K) throws -> T? where T: Decodable {
         
         guard contains(key) else { return nil }
         
